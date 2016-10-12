@@ -31,7 +31,5 @@ public class No29 {
 			}
 		}
 		return result;
-		
 	}
-
 }

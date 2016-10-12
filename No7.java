@@ -46,10 +46,7 @@ public class No7 {
 		queue.poll();
 		queue.poll();
 		queue.poll();
-		queue.poll();
-		
-		
-		
+		queue.poll();			
 	}
 
 }

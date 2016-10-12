@@ -1,6 +1,5 @@
 
 public class No26 {
-
 	/**
 	 * 请实现函数ComplexListNode* Clone(ComplexListNode* pHead)，
 	 * 复制一个复杂链表。在复杂链表中，
@@ -79,7 +78,5 @@ class ComplexListNode{
 	public ComplexListNode(int data) {
 		super();
 		this.data = data;
-	}
-	
-	
+	}	
 }

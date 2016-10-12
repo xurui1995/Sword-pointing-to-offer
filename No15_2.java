@@ -27,12 +27,9 @@ public class No15_2 {
 		}
 		Node15 slow=a;
 		Node15 fast=a;
-		while(fast.getNext()!=null&&fast.getNext().getNext()!=null){
-			
-			slow=slow.getNext();
-			
-			fast=fast.getNext().getNext();
-			
+		while(fast.getNext()!=null&&fast.getNext().getNext()!=null){	
+			slow=slow.getNext();		
+			fast=fast.getNext().getNext();	
 		}
 		
 		return slow;

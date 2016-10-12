@@ -18,9 +18,7 @@ public class No10 {
 			n=(n-1)&n;
 		}
 		return num;
-		
-		
-		
+			
 	}
 
 }

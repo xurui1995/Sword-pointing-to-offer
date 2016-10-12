@@ -36,10 +36,7 @@ public class No23 {
 			if(node.getRchildNode()!=null){
 				queue.add(node.getRchildNode());
 			}
-		}
-		
-		
-		
+		}	
 	}
 
 }

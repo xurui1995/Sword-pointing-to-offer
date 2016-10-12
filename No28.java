@@ -1,6 +1,5 @@
 
 public class No28 {
-
 	/**
 	 * 输入一个字符串，打印出该字符串中字符的所有排列。
 	 * 例如输入字符串abc， 则打印出由字符串a、b、c所能
@@ -14,15 +13,10 @@ public class No28 {
 		if(str==null)
 			return;
 		char[] chs=str.toCharArray();
-		
-		myPrint(chs,0);
-		
-		
+		myPrint(chs,0);	
 	}
 
 	private static void myPrint(char[] str, int i) {
-		
-		
 		if (i >= str.length)
             return;
         if (i == str.length - 1) {
@@ -42,7 +36,4 @@ public class No28 {
         }
     } 
 		
-	
-
-
 }

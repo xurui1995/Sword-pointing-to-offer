@@ -1,4 +1,3 @@
-import java.awt.image.ConvolveOp;
 
 
 public class No27 {
@@ -29,29 +28,19 @@ public class No27 {
 
 	private static BinaryTreeNode covert(BinaryTreeNode root) {
 		BinaryTreeNode lastNodeList=null;
-		
 		lastNodeList=convertNode(root,lastNodeList);
-		
-		
 		while (lastNodeList!=null&&lastNodeList.getLchildNode()!=null) {
-			
-			lastNodeList=lastNodeList.getLchildNode();
-			
-		}
-		
-		return lastNodeList;
-		
+			lastNodeList=lastNodeList.getLchildNode();	
+		}		
+		return lastNodeList;	
 	}
 
 	private static BinaryTreeNode convertNode(BinaryTreeNode root,
 			BinaryTreeNode lastNodeList) {
-		
 		if(root==null)
 			return null;
 		BinaryTreeNode current=root;
-		
-		if(current.getLchildNode()!=null){
-			
+		if(current.getLchildNode()!=null){	
 			lastNodeList=convertNode(current.getLchildNode(), lastNodeList);
 		}
 		
@@ -64,8 +53,6 @@ public class No27 {
 		if(current.getRchildNode()!=null){
 			lastNodeList=convertNode(current.getRchildNode(), lastNodeList);
 		}
-		
-		
 		return lastNodeList;
 	}
 

@@ -46,12 +46,8 @@ public class No5 {
 			cur=temp;
 		}
 		head.setNext(null);
-		return pre;
-		
+		return pre;	
 	}
-	
-	
-
 }
 class Node{
 	String data;

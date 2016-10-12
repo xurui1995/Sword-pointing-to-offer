@@ -24,9 +24,7 @@ public class No25 {
 			return;
 		Stack<Integer> stack=new Stack<Integer>();
 		int currentSum=0;
-		findPath(root,  i,stack,currentSum);
-		
-		
+		findPath(root,  i,stack,currentSum);		
 	}
 
 	private static void findPath(BinaryTreeNode root, int i,

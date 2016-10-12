@@ -10,9 +10,7 @@ public class No14 {
 		mysort(array);
 		for(int a:array){
 			System.out.println(" "+a);
-		}
-			
-		
+		}				
 	}
 
 	private static void mysort(int[] array) {
