@@ -1,7 +1,7 @@
 
 
 
-public class No6 {
+public class No06 {
 	/**
 	 * 根据前序遍历和中序遍历建立树
 	 */

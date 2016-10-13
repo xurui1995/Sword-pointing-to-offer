@@ -1,5 +1,5 @@
 
-public class No4 {
+public class No04 {
 
 	/**
 	 * 请实现一个函数，把字符串中的每个空格替换成"%20"。

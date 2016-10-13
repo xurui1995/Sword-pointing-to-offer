@@ -1,5 +1,5 @@
 
-public class No5 {
+public class No05 {
 
 	/**
 	 *  Á´±í·´×ª

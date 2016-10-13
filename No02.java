@@ -1,5 +1,5 @@
 
-public class No2 {
+public class No02 {
 
 	/**
 	 * 设计一个类，我们只能生成该类的一个实例。

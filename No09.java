@@ -1,5 +1,5 @@
 
-public class No9 {
+public class No09 {
 
 	/**
 	 * 写一个函数，输入n，求斐波那契数列的第n项

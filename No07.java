@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 
-public class No7 {
+public class No07 {
 
 	/**
 	 * @param 两个栈建立队列
@@ -39,7 +39,7 @@ public class No7 {
 	}
 	public static void main(String[] args) {
 		
-		No7 queue=new No7();
+		No07 queue=new No07();
 		queue.offer("a");
 		queue.offer("b");
 		queue.offer("c");

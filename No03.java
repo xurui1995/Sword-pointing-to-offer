@@ -1,5 +1,5 @@
 
-public class No3 {
+public class No03 {
 
 	/**
 	 * 在一个二维数组中，每一行都按照从左到右递增

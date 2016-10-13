@@ -1,5 +1,5 @@
 
-public class No9_2 {
+public class No09_2 {
 
 	/**
 	 * .一只青蛙一次可以跳上1级台阶，也可以跳上2级。
