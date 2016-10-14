@@ -19,7 +19,7 @@ class A{
 }
 //懒汉式 线程安全写法
 class B{
-	private static B b=null;
+	private static volatile B b=null;
 	private B(){
 	}
 	public static B getInstance(){
