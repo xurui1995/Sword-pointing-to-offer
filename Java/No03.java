@@ -1,40 +1,38 @@
-
 public class No03 {
 
-	/**
-	 * ÔÚÒ»¸ö¶şÎ¬Êı×éÖĞ£¬Ã¿Ò»ĞĞ¶¼°´ÕÕ´Ó×óµ½ÓÒµİÔö
-	 * µÄË³ĞòÅÅĞò£¬Ã¿Ò»ÁĞ¶¼°´ÕÕ´ÓÉÏµ½ÏÂµİÔöµÄË³ĞòÅÅĞò¡£
-	 * ÇëÍê³ÉÒ»¸öº¯Êı£¬ÊäÈëÕâÑùµÄÒ»¸ö¶şÎ¬Êı×é
-	 * ºÍÒ»¸öÕûÊı£¬ÅĞ¶ÏÊı×éÖĞÊÇ·ñº¯Êı¸ÃÕûÊı¡£
-	 */
-	public static void main(String[] args) {
-		int[][] arr={{1,2,8,9},
-					 {2,4,9,12},
-					 {4,7,10,13},
-					 {6,8,11,15}};
-		
-		System.out.println(search(arr,7));
-	}
+    /**
+     * åœ¨ä¸€ä¸ªäºŒç»´æ•°ç»„ä¸­ï¼Œæ¯ä¸€è¡Œéƒ½æŒ‰ç…§ä»å·¦åˆ°å³é€’å¢
+     * çš„é¡ºåºæ’åºï¼Œæ¯ä¸€åˆ—éƒ½æŒ‰ç…§ä»ä¸Šåˆ°ä¸‹é€’å¢çš„é¡ºåºæ’åºã€‚
+     * è¯·å®Œæˆä¸€ä¸ªå‡½æ•°ï¼Œè¾“å…¥è¿™æ ·çš„ä¸€ä¸ªäºŒç»´æ•°ç»„
+     * å’Œä¸€ä¸ªæ•´æ•°ï¼Œåˆ¤æ–­æ•°ç»„ä¸­æ˜¯å¦å‡½æ•°è¯¥æ•´æ•°ã€‚
+     */
+    public static void main(String[] args) {
+        int[][] arr = {{1, 2, 8, 9},
+                {2, 4, 9, 12},
+                {4, 7, 10, 13},
+                {6, 8, 11, 15}};
 
-	private static boolean search(int[][] arr, int value) {
-		
-		int a=arr[0].length;	
-		int b=arr.length;
-		int i=0;
-		int j=a-1;
-		
-		while(i<=b-1&&j>=0){
-			if(arr[i][j]==value){
-				return true;
-			}
-			if(arr[i][j]>value){
-				j--;
-			}
-			else {
-				i++;
-			}
-		}
-		return false;
-	}
+        System.out.println(search(arr, 7));
+    }
+
+    private static boolean search(int[][] arr, int value) {
+
+        int a = arr[0].length;
+        int b = arr.length;
+        int i = 0;
+        int j = a - 1;
+
+        while (i <= b - 1 && j >= 0) {
+            if (arr[i][j] == value) {
+                return true;
+            }
+            if (arr[i][j] > value) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return false;
+    }
 
 }

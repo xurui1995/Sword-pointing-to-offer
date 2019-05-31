@@ -1,37 +1,52 @@
-
 public class No02 {
 
-	/**
-	 * Éè¼ÆÒ»¸öÀà£¬ÎÒÃÇÖ»ÄÜÉú³É¸ÃÀàµÄÒ»¸öÊµÀı¡£
-	 */
-	public static void main(String[] args) {
+    /**
+     * è®¾è®¡ä¸€ä¸ªç±»ï¼Œæˆ‘ä»¬åªèƒ½ç”Ÿæˆè¯¥ç±»çš„ä¸€ä¸ªå®ä¾‹ã€‚
+     */
+}
 
-	}
-	
+// é¥¿æ±‰å¼  çº¿ç¨‹å®‰å…¨
+class A {
+    private static final A instance = new A();
+
+    private A() {
+    }
+
+    public static A getInstance() {
+        return instance;
+    }
 }
-//¶öººÊ½  Ïß³Ì°²È«
-class A{
-	private static final A a=new A();
-	private A(){}
-	public static A getInstance(){
-		return a;
-	}
+
+// æ‡’æ±‰å¼ çº¿ç¨‹å®‰å…¨å†™æ³•
+class B {
+    private static volatile B instance = null;
+
+    private B() {
+    }
+
+    public static B getInstance() {
+        if (instance == null) {
+            synchronized (B.class) {
+                if (instance == null)
+                    instance = new B();
+            }
+        }
+        return instance;
+    }
 }
-//ÀÁººÊ½ Ïß³Ì°²È«Ğ´·¨
-class B{
-	private static volatile B b=null;
-	private B(){
-	}
-	public static B getInstance(){
-		if(b==null){
-			synchronized (B.class) {
-				
-				if(b==null)
-					b=new B();
-				
-			}
-		}
-		return b;
-		}
+
+// é™æ€å†…éƒ¨ç±»æ–¹å¼ çº¿ç¨‹å®‰å…¨
+class C {
+    private C() {
+
+    }
+
+    public static C getInstance() {
+        return CHolder.INSTANCE;
+    }
+
+    private static class CHolder {
+        private static final C INSTANCE = new C();
+    }
 }
 
