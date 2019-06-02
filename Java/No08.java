@@ -1,53 +1,51 @@
-
-
-
 public class No08 {
-	/**
-	 * °ÑÒ»¸öÊı×é×î¿ªÊ¼µÄÈô¸É¸öÔªËØ°áµ½Êı×éµÄÄ©Î²£¬
-	 * ÎÒÃÇ³ÆÖ®ÎªÊı×éµÄĞı×ª¡£ÊäÈëÒ»¸öµİÔöÅÅĞòµÄÊı×é
-	 * µÄÒ»¸öĞı×ª£¬Êä³öĞı×ªÊı×éµÄ×îĞ¡ÔªËØ¡£ÀıÈçÊı×é
-	 * {3,4,5,1,2}Îª{1,2,3,4,5}µÄÒ»¸öĞı×ª£¬¸ÃÊı×éµÄ×îĞ¡ÖµÎª1¡£
-	 */
-	public static void main(String[] args) {
-		int[] arr={3,4,5,1,2};
-		System.out.println(findMin(arr));
-	}
-	public static int findMin(int[] arr){
-		int left=0;
-		int right=arr.length-1;
-		if (arr[right]>arr[left]){
-			try {
-				throw new Exception("·ÇĞı×ªÊı×é");
-			} catch (Exception e) {	
-				e.printStackTrace();
-				return -1;
-			}
-		}
-		while(left<right){
-			int mid=(left+right)/2;
-			//¶ÔÓÚ{1,0,1,1,1}Ö®ÀàµÄÌØÊâ´¦Àí
-			if(arr[mid]==arr[left]&&arr[left]==arr[right]){
-				return seachMin(arr,left,right);
-			}
-			if(right-left==1)
-				break;
-			if(arr[mid]>=arr[left]){
-				left=mid;
-			}
-			else{
-				right=mid;
-			}		
-		}
-		return arr[right];		
-	}
-	private static int seachMin(int[] arr, int left, int right) {
-		int result=arr[left];
-		for(int i=left+1;i<=right;++i){
-			if(arr[i]<result)
-				result=arr[i];
-		}
-		return result;
-	}
-	
+    /**
+     * æŠŠä¸€ä¸ªæ•°ç»„æœ€å¼€å§‹çš„è‹¥å¹²ä¸ªå…ƒç´ æ¬åˆ°æ•°ç»„çš„æœ«å°¾ï¼Œ
+     * æˆ‘ä»¬ç§°ä¹‹ä¸ºæ•°ç»„çš„æ—‹è½¬ã€‚è¾“å…¥ä¸€ä¸ªé€’å¢æ’åºçš„æ•°ç»„
+     * çš„ä¸€ä¸ªæ—‹è½¬ï¼Œè¾“å‡ºæ—‹è½¬æ•°ç»„çš„æœ€å°å…ƒç´ ã€‚ä¾‹å¦‚æ•°ç»„
+     * {3,4,5,1,2}ä¸º{1,2,3,4,5}çš„ä¸€ä¸ªæ—‹è½¬ï¼Œè¯¥æ•°ç»„çš„æœ€å°å€¼ä¸º1ã€‚
+     */
+    public static void main(String[] args) {
+        int[] arr = {3, 4, 5, 1, 2};
+        System.out.println(findMin(arr));
+    }
+
+    public static int findMin(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
+        if (arr[right] > arr[left]) {
+            try {
+                throw new Exception("éæ—‹è½¬æ•°ç»„");
+            } catch (Exception e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
+        while (left < right) {
+            int mid = (left + right) / 2;
+            //å¯¹äº{1,0,1,1,1}ä¹‹ç±»çš„ç‰¹æ®Šå¤„ç†
+            if (arr[mid] == arr[left] && arr[left] == arr[right]) {
+                return seachMin(arr, left, right);
+            }
+            if (right - left == 1)
+                break;
+            if (arr[mid] >= arr[left]) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        return arr[right];
+    }
+
+    private static int seachMin(int[] arr, int left, int right) {
+        int result = arr[left];
+        for (int i = left + 1; i <= right; ++i) {
+            if (arr[i] < result)
+                result = arr[i];
+        }
+        return result;
+    }
+
 
 }

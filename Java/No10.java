@@ -1,24 +1,24 @@
-
 public class No10 {
 
-	/**
-	 * ÇëÊµÏÖÒ»¸öº¯Êı£¬ÊäÈëÒ»¸öÕûÊı£¬
-	 * Êä³ö¸Ã¶ş½øÖÆ±íÊ¾ÖĞ1µÄ¸öÊı¡£
-	 * ÀıÈç°Ñ9±íÊ¾³É¶ş½øÖÆÊÇ1001£¬ ÓĞ2Î»ÊÇ1¡£
-	 * Òò´ËÈç¹ûÊäÈë9£¬¸Ãº¯ÊıÊä³ö2¡£
-	 */
-	public static void main(String[] args) {
-		System.out.println(getNum(9));
+    /**
+     * è¯·å®ç°ä¸€ä¸ªå‡½æ•°ï¼Œè¾“å…¥ä¸€ä¸ªæ•´æ•°ï¼Œ
+     * è¾“å‡ºè¯¥äºŒè¿›åˆ¶è¡¨ç¤ºä¸­1çš„ä¸ªæ•°ã€‚
+     * ä¾‹å¦‚æŠŠ9è¡¨ç¤ºæˆäºŒè¿›åˆ¶æ˜¯1001ï¼Œ æœ‰2ä½æ˜¯1ã€‚
+     * å› æ­¤å¦‚æœè¾“å…¥9ï¼Œè¯¥å‡½æ•°è¾“å‡º2ã€‚
+     */
+    public static void main(String[] args) {
+        System.out.println(getNum(9));
 
-	}
-	public static int getNum(int n) {
-		int num=0;
-		while(n!=0){
-			num++;
-			n=(n-1)&n;
-		}
-		return num;
-			
-	}
+    }
+
+    public static int getNum(int n) {
+        int num = 0;
+        while (n != 0) {
+            num++;
+            n = (n - 1) & n;
+        }
+        return num;
+
+    }
 
 }
