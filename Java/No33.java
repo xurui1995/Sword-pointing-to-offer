@@ -1,56 +1,56 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªæ­£æ•´æ•°æ•°ç»„ï¼ŒæŠŠæ•°ç»„é‡Œæ‰€æœ‰æ•°å­—æ‹¼æ¥èµ·æ¥æ’æˆä¸€ä¸ªæ•°ï¼Œ
+ * æ‰“å°èƒ½æ‹¼æ¥å‡ºæ‰€æœ‰æ•°å­—ä¸­æœ€å°çš„ä¸€ä¸ªã€‚
+ * ä¾‹å¦‚è¾“å…¥æ•°ç»„{3,32,321}ï¼Œåˆ™æ‰“å°å‡ºè¿™3ä¸ªæ•°å­—èƒ½æ’æˆçš„æœ€å°æ•°å­—321323
+ */
 
 public class No33 {
 
-	/**
-	 * ÊäÈëÒ»¸öÕıÕûÊıÊı×é£¬°ÑÊı×éÀïËùÓĞÊı×ÖÆ´½ÓÆğÀ´ÅÅ³ÉÒ»¸öÊı£¬
-	 * ´òÓ¡ÄÜÆ´½Ó³öËùÓĞÊı×ÖÖĞ×îĞ¡µÄÒ»¸ö¡£
-	 * ÀıÈçÊäÈëÊı×é{3,32,321}£¬Ôò´òÓ¡³öÕâ3¸öÊı×ÖÄÜÅÅ³ÉµÄ×îĞ¡Êı×Ö321323
-	 */
-	public static void main(String[] args) {
-		int[] array={321,32,3};
-		printMin(array);
-	}
+    public static void main(String[] args) {
+        int[] array = {321, 32, 3};
+        printMin(array);
+    }
 
-	private static void printMin(int[] array) {
-		int[] clone=array.clone();
-		printMin(clone,0,clone.length-1);
-		for(int i:clone)
-			System.out.print(i);
-	}
+    private static void printMin(int[] array) {
+        int[] clone = array.clone();
+        printMin(clone, 0, clone.length - 1);
+        for (int i : clone)
+            System.out.print(i);
+    }
 
-	private static void printMin(int[] array,int start,int end) {
-		
-		if(start<end){
-			int main_number=array[end];
-			int small_cur=start;
-			for(int j=start;j<end;j++){
-				if(isSmall(String.valueOf(array[j]), String.valueOf(main_number))){
-					int temp=array[j];
-					array[j]=array[small_cur];
-					array[small_cur]=temp;
-					small_cur++;
-				}
-			}
-			array[end]=array[small_cur];
-			array[small_cur]=main_number;
-			printMin(array, 0,small_cur-1);
-			printMin(array, small_cur+1, end);
-		}
-		
-	}
-	public static boolean isSmall(String m,String n) {
-		String left=m+n;
-		String right=n+m;
-		boolean result=false;
-		for(int i=0;i<left.length();i++){
-			if(left.charAt(i)<right.charAt(i))
-				return true;
-			else if(left.charAt(i)>right.charAt(i))
-				return false;
-		}
-		
-		return result;
-		
-	}
+    private static void printMin(int[] array, int start, int end) {
+
+        if (start < end) {
+            int main_number = array[end];
+            int small_cur = start;
+            for (int j = start; j < end; j++) {
+                if (isSmall(String.valueOf(array[j]), String.valueOf(main_number))) {
+                    int temp = array[j];
+                    array[j] = array[small_cur];
+                    array[small_cur] = temp;
+                    small_cur++;
+                }
+            }
+            array[end] = array[small_cur];
+            array[small_cur] = main_number;
+            printMin(array, 0, small_cur - 1);
+            printMin(array, small_cur + 1, end);
+        }
+
+    }
+
+    public static boolean isSmall(String m, String n) {
+        String left = m + n;
+        String right = n + m;
+        boolean result = false;
+        for (int i = 0; i < left.length(); i++) {
+            if (left.charAt(i) < right.charAt(i))
+                return true;
+            else if (left.charAt(i) > right.charAt(i))
+                return false;
+        }
+
+        return result;
+    }
 
 }

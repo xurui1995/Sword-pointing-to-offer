@@ -1,71 +1,80 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªé“¾è¡¨ï¼Œè¾“å‡ºè¯¥é“¾è¡¨ä¸­å€’æ•°ç¬¬Kä¸ªç»“ç‚¹ã€‚
+ * ä¸ºäº†ç¬¦åˆå¤§å¤šæ•°äººçš„ä¹ æƒ¯ï¼Œæœ¬é¢˜ä»1å¼€å§‹è®¡æ•°ï¼Œå³é“¾è¡¨çš„å°¾ç»“ç‚¹æ˜¯å€’æ•°ç¬¬1ä¸ªç»“ç‚¹ã€‚
+ * ä¾‹å¦‚ä¸€ä¸ªé“¾è¡¨æœ‰6ä¸ªç»“ç‚¹ï¼Œä»å¤´ç»“ç‚¹å¼€å§‹å®ƒä»¬çš„å€¼ä¾æ¬¡æ˜¯1,2,3,4,5,6ã€‚
+ * è¿™ä¸ªé“¾è¡¨çš„å€’æ•°ç¬¬3ä¸ªç»“ç‚¹æ˜¯å€¼ä¸º4çš„ç»“ç‚¹ã€‚
+ * ï¼ˆæ³¨æ„ä»£ç é²æ£’æ€§ï¼Œè€ƒè™‘è¾“å…¥ç©ºæŒ‡é’ˆï¼Œé“¾è¡¨ç»“ç‚¹æ€»æ•°å°‘äºkï¼Œè¾“å…¥çš„kå‚æ•°ä¸º0ï¼‰
+ */
 
 public class No15 {
 
-	/**
-	 * ÊäÈëÒ»¸öÁ´±í£¬Êä³ö¸ÃÁ´±íÖĞµ¹ÊıµÚK¸ö½áµã¡£
-	 * ÎªÁË·ûºÏ´ó¶àÊıÈËµÄÏ°¹ß£¬±¾Ìâ´Ó1¿ªÊ¼¼ÆÊı£¬¼´Á´±íµÄÎ²½áµãÊÇµ¹ÊıµÚ1¸ö½áµã¡£
-	 * ÀıÈçÒ»¸öÁ´±íÓĞ6¸ö½áµã£¬´ÓÍ·½áµã¿ªÊ¼ËüÃÇµÄÖµÒÀ´ÎÊÇ1,2,3,4,5,6¡£
-	 * Õâ¸öÁ´±íµÄµ¹ÊıµÚ3¸ö½áµãÊÇÖµÎª4µÄ½áµã¡£
-	 * £¨×¢Òâ´úÂëÂ³°ôĞÔ£¬¿¼ÂÇÊäÈë¿ÕÖ¸Õë£¬Á´±í½áµã×ÜÊıÉÙÓÚk£¬ÊäÈëµÄk²ÎÊıÎª0£©
-	 */
-	public static void main(String[] args) {
-			Node15 a=new Node15("1");
-			Node15 b=new Node15("2");
-			Node15 c=new Node15("3");
-			Node15 d=new Node15("4");
-			Node15 e=new Node15("5");
-			Node15 f=new Node15("6");
-			a.setNext(b);b.setNext(c);c.setNext(d);
-			d.setNext(e);e.setNext(f);
-			
-			System.out.print(FindDataFromTail(a,5));
-	}
+    public static void main(String[] args) {
+        Node15 a = new Node15("1");
+        Node15 b = new Node15("2");
+        Node15 c = new Node15("3");
+        Node15 d = new Node15("4");
+        Node15 e = new Node15("5");
+        Node15 f = new Node15("6");
+        a.setNext(b);
+        b.setNext(c);
+        c.setNext(d);
+        d.setNext(e);
+        e.setNext(f);
 
-	private static String FindDataFromTail(Node15 a, int k) {
-		
-		if(a==null)
-			return null;
-		if(k==0){
-			System.out.println("kÓ¦¸Ã´Ó1¿ªÊ¼");
-			return null;
-		}
-		Node15 Node1=a;
-		Node15 Node2=null;
-		for(int i=0;i<k-1;i++){
-			if(Node1.getNext()==null){
-				System.out.println("k²»Ó¦¸Ã´óÓÚÁ´±í³¤¶È");
-				return null;
-			}
-			Node1=Node1.getNext();
-		}
-		Node2=a;
-		
-		while(Node1.getNext()!=null){
-			Node1=Node1.getNext();
-			Node2=Node2.getNext();
-		}
-		return Node2.getData();
-		
-	}
+        System.out.print(FindDataFromTail(a, 5));
+    }
+
+    private static String FindDataFromTail(Node15 a, int k) {
+
+        if (a == null)
+            return null;
+        if (k == 0) {
+            System.out.println("kåº”è¯¥ä»1å¼€å§‹");
+            return null;
+        }
+        Node15 Node1 = a;
+        Node15 Node2 = null;
+        for (int i = 0; i < k - 1; i++) {
+            if (Node1.getNext() == null) {
+                System.out.println("kä¸åº”è¯¥å¤§äºé“¾è¡¨é•¿åº¦");
+                return null;
+            }
+            Node1 = Node1.getNext();
+        }
+        Node2 = a;
+
+        while (Node1.getNext() != null) {
+            Node1 = Node1.getNext();
+            Node2 = Node2.getNext();
+        }
+        return Node2.getData();
+
+    }
 }
- class Node15{
-	private String data;
-	private Node15 Next;
-	public Node15(String data) {
-		super();
-		this.data = data;
-	}
-	public String getData() {
-		return data;
-	}
-	public void setData(String data) {
-		this.data = data;
-	}
-	public Node15 getNext() {
-		return Next;
-	}
-	public void setNext(Node15 next) {
-		Next = next;
-	}
-	
+
+class Node15 {
+    private String data;
+    private Node15 Next;
+
+    public Node15(String data) {
+        super();
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Node15 getNext() {
+        return Next;
+    }
+
+    public void setNext(Node15 next) {
+        Next = next;
+    }
+
 }

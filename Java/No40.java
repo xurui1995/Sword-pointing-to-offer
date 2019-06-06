@@ -1,47 +1,47 @@
+/**
+ * ä¸€ä¸ªæ•´å‹æ•°ç»„é‡Œé™¤äº†ä¸¤ä¸ªæ•°å­—ä¹‹å¤–ï¼Œå…¶ä»–çš„æ•°å­—éƒ½å‡ºç°äº†ä¸¤æ¬¡ã€‚
+ * è¯·å†™ç¨‹åºæ‰¾å‡ºè¿™ä¸¤ä¸ªåªå‡ºç°ä¸€æ¬¡çš„æ•°å­—ã€‚è¦æ±‚æ—¶é—´å¤æ‚åº¦æ˜¯O(n)ï¼Œç©ºé—´å¤æ‚åº¦O(1)
+ */
 
 public class No40 {
 
-	/**
-	 * Ò»¸öÕûĞÍÊı×éÀï³ıÁËÁ½¸öÊı×ÖÖ®Íâ£¬ÆäËûµÄÊı×Ö¶¼³öÏÖÁËÁ½´Î¡£
-	 * ÇëĞ´³ÌĞòÕÒ³öÕâÁ½¸öÖ»³öÏÖÒ»´ÎµÄÊı×Ö¡£ÒªÇóÊ±¼ä¸´ÔÓ¶ÈÊÇO(n)£¬¿Õ¼ä¸´ÔÓ¶ÈO(1)
-	 */
-	public static void main(String[] args) {
-		 int[] array={2,4,3,6,3,2,5,5}; 
-		 findNumsAppearOnce(array); 
-	}
+    public static void main(String[] args) {
+        int[] array = {2, 4, 3, 6, 3, 2, 5, 5};
+        findNumsAppearOnce(array);
+    }
 
-	private static void findNumsAppearOnce(int[] array) {
-		if(array==null)
-			return ;
-		int num=0;
-		for(int i:array){
-			num^=i;
-		}
-		int index=findFirstBitIs1(num);
-		int number1=0;
-		int number2=0;
-		for(int i:array){
-			if(isBit1(i,index))
-				number1^=i;
-			else
-				number2^=i;
-		}
-		System.out.println(number1);
-		System.out.println(number2);
-	}
+    private static void findNumsAppearOnce(int[] array) {
+        if (array == null)
+            return;
+        int num = 0;
+        for (int i : array) {
+            num ^= i;
+        }
+        int index = findFirstBitIs1(num);
+        int number1 = 0;
+        int number2 = 0;
+        for (int i : array) {
+            if (isBit1(i, index))
+                number1 ^= i;
+            else
+                number2 ^= i;
+        }
+        System.out.println(number1);
+        System.out.println(number2);
+    }
 
-	private static boolean isBit1(int number, int index) {
-		number=number>>index; 
-		return (number&1)==0; 
-	}
+    private static boolean isBit1(int number, int index) {
+        number = number >> index;
+        return (number & 1) == 0;
+    }
 
-	private static int findFirstBitIs1(int num) {
-		int index=0;
-		while((num&1)==0){
-			num=num>>1;
-			index++;
-		}
-		return index;
-	}
+    private static int findFirstBitIs1(int num) {
+        int index = 0;
+        while ((num & 1) == 0) {
+            num = num >> 1;
+            index++;
+        }
+        return index;
+    }
 
 }

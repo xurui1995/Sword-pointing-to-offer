@@ -1,72 +1,62 @@
+/**
+ * é¢˜ç›®ï¼šè¾“å…¥nä¸ªæ•´æ•°ï¼Œè¾“å‡ºå…¶ä¸­æœ€å°çš„kä¸ªã€‚
+ * ä¾‹å¦‚è¾“å…¥1ï¼Œ2ï¼Œ3ï¼Œ4ï¼Œ5ï¼Œ6ï¼Œ7å’Œ8è¿™8ä¸ªæ•°å­—ï¼Œåˆ™æœ€å°çš„4ä¸ªæ•°å­—ä¸º1ï¼Œ2ï¼Œ3å’Œ4ã€‚
+ * <p>
+ * å€Ÿé‰´æ€è·¯(æºäºŽç½‘ç»œ)ï¼š
+ * è¿™é“é¢˜æœ€ç®€å•çš„æ€è·¯èŽ«è¿‡äºŽæŠŠè¾“å…¥çš„nä¸ªæ•´æ•°æŽ’åºï¼Œè¿™æ ·æŽ’åœ¨æœ€å‰é¢çš„kä¸ªæ•°å°±æ˜¯æœ€å°çš„kä¸ªæ•°ã€‚åªæ˜¯è¿™ç§æ€è·¯çš„æ—¶é—´å¤æ‚åº¦ä¸ºO(nlogn)ã€‚
+ * é¢˜ç›®å¹¶æ²¡æœ‰è¦æ±‚è¦æŸ¥æ‰¾çš„kä¸ªæ•°ï¼Œç”šè‡³åŽn-kä¸ªæ•°æ˜¯æœ‰åºçš„ï¼Œæ—¢ç„¶å¦‚æ­¤ï¼Œå’±ä»¬åˆä½•å¿…å¯¹æ‰€æœ‰çš„nä¸ªæ•°éƒ½è¿›è¡ŒæŽ’åºåˆ—?
+ * è¿™æ—¶ï¼Œå’±ä»¬æƒ³åˆ°äº†ç”¨é€‰æ‹©æˆ–æ’å…¥æŽ’åºï¼Œå³éåŽ†nä¸ªæ•°ï¼Œå…ˆæŠŠæœ€å…ˆéåŽ†åˆ°å¾—kä¸ªæ•°å­˜å…¥å¤§å°ä¸ºkçš„æ•°ç»„ä¹‹ä¸­ï¼Œå¯¹è¿™kä¸ªæ•°ï¼Œè¿›è¡ŒæŽ’åºï¼Œæ‰¾åˆ°kä¸ªæ•°ä¸­çš„æœ€å¤§æ•°kmaxï¼Œ
+ * k1<k2,K3<â€¦<kmaxï¼ˆkmaxè®¾ä¸ºkä¸ªå…ƒç´ çš„æ•°ç»„ä¸­æœ€å¤§å…ƒç´ ï¼‰ï¼Œç”¨æ—¶Oï¼ˆkï¼‰ï¼ŒåŽå†ç»§ç»­éåŽ†åŽn-kä¸ªæ•°ï¼Œxä¸Žkmaxæ¯”è¾ƒï¼Œå¦‚æžœx<kmaxï¼Œåˆ™xä»£æ›¿kmaxï¼Œå¹¶å†æ¬¡æŽ’åºkä¸ªå…ƒç´ çš„æ•°ç»„ã€‚å¦‚æžœx>kmaxï¼Œåˆ™ä¸æ›´æ–°æ•°ç»„ã€‚
+ * è¿™æ ·ï¼Œæ¯æ¬¡æ›´æ–°æˆ–ä¸æ›´æ–°æ•°ç»„çš„æ‰€ç”¨çš„æ—¶é—´ä¸ºOï¼ˆkï¼‰æˆ–Oï¼ˆ0ï¼‰ï¼Œæ•´è¶Ÿä¸‹æ¥ï¼Œæ€»çš„æ—¶é—´å¤æ‚åº¦å¹³å‡ä¸‹æ¥ä¸ºï¼šn*Oï¼ˆkï¼‰=Oï¼ˆn*kï¼‰ã€‚
+ * 3ã€  å½“ç„¶ï¼Œæ›´å¥½çš„åŠžæ³•æ˜¯ç»´æŠ¤kä¸ªå…ƒç´ çš„æœ€å¤§å †ï¼ŒåŽŸç†ä¸Žä¸Šè¿°ç¬¬3ä¸ªæ–¹æ¡ˆä¸€è‡´ï¼Œå³ç”¨å®¹é‡ä¸ºkçš„æœ€å¤§å †å­˜å‚¨æœ€å°çš„kä¸ªæ•°ï¼Œæ­¤æ—¶ï¼Œk1<k2<...<kmaxï¼ˆkmaxè®¾ä¸ºå¤§é¡¶å †ä¸­æœ€å¤§å…ƒç´ ï¼‰ã€‚
+ * éåŽ†ä¸€æ¬¡æ•°åˆ—ï¼Œnï¼Œæ¯æ¬¡éåŽ†ä¸€ä¸ªå…ƒç´ xï¼Œä¸Žå †é¡¶å…ƒç´ æ¯”è¾ƒï¼Œx<kmaxï¼Œæ›´æ–°å †ï¼ˆç”¨æ—¶logkï¼‰ï¼Œå¦åˆ™ä¸æ›´æ–°å †ã€‚è¿™æ ·ä¸‹æ¥ï¼Œæ€»è´¹æ—¶Oï¼ˆn*logkï¼‰ã€‚æ­¤æ–¹æ³•å¾—ç›ŠäºŽåœ¨å †ä¸­ï¼ŒæŸ¥æ‰¾ç­‰å„é¡¹æ“ä½œæ—¶é—´å¤æ‚åº¦å‡ä¸ºlogkï¼ˆä¸ç„¶ï¼Œå°±å¦‚ä¸Šè¿°æ€è·¯2æ‰€è¿°ï¼šç›´æŽ¥ç”¨æ•°ç»„ä¹Ÿå¯ä»¥æ‰¾å‡ºå‰kä¸ªå°çš„å…ƒç´ ï¼Œç”¨æ—¶Oï¼ˆn*kï¼‰ï¼‰ã€‚
+ */
+public class No30 {
 
- /** 
- * ÌâÄ¿£ºÊäÈën¸öÕûÊý£¬Êä³öÆäÖÐ×îÐ¡µÄk¸ö¡£ 
- * ÀýÈçÊäÈë1£¬2£¬3£¬4£¬5£¬6£¬7ºÍ8Õâ8¸öÊý×Ö£¬Ôò×îÐ¡µÄ4¸öÊý×ÖÎª1£¬2£¬3ºÍ4¡£ 
- * ÕâµÀÌâ×î¼òµ¥µÄË¼Â·Äª¹ýÓÚ°ÑÊäÈëµÄn¸öÕûÊýÅÅÐò£¬ÕâÑùÅÅÔÚ×îÇ°ÃæµÄk¸öÊý¾ÍÊÇ×îÐ¡µÄk¸öÊý¡£Ö»ÊÇÕâÖÖË¼Â·µÄÊ±¼ä¸´ÔÓ¶ÈÎªO(nlogn)¡£ 
- * ÌâÄ¿²¢Ã»ÓÐÒªÇóÒª²éÕÒµÄk¸öÊý£¬ÉõÖÁºón-k¸öÊýÊÇÓÐÐòµÄ£¬¼ÈÈ»Èç´Ë£¬ÔÛÃÇÓÖºÎ±Ø¶ÔËùÓÐµÄn¸öÊý¶¼½øÐÐÅÅÐòÁÐ? 
-       ÕâÊ±£¬ÔÛÃÇÏëµ½ÁËÓÃÑ¡Ôñ»ò²åÈëÅÅÐò£¬¼´±éÀún¸öÊý£¬ÏÈ°Ñ×îÏÈ±éÀúµ½µÃk¸öÊý´æÈë´óÐ¡ÎªkµÄÊý×éÖ®ÖÐ£¬¶ÔÕâk¸öÊý£¬½øÐÐÅÅÐò£¬ÕÒµ½k¸öÊýÖÐµÄ×î´óÊýkmax£¬ 
-  k1<k2,K3<¡­<kmax£¨kmaxÉèÎªk¸öÔªËØµÄÊý×éÖÐ×î´óÔªËØ£©£¬ÓÃÊ±O£¨k£©£¬ºóÔÙ¼ÌÐø±éÀúºón-k¸öÊý£¬xÓëkmax±È½Ï£¬Èç¹ûx<kmax£¬Ôòx´úÌækmax£¬²¢ÔÙ´ÎÅÅÐòk¸öÔªËØµÄÊý×é¡£Èç¹ûx>kmax£¬Ôò²»¸üÐÂÊý×é¡£ 
-       ÕâÑù£¬Ã¿´Î¸üÐÂ»ò²»¸üÐÂÊý×éµÄËùÓÃµÄÊ±¼äÎªO£¨k£©»òO£¨0£©£¬ÕûÌËÏÂÀ´£¬×ÜµÄÊ±¼ä¸´ÔÓ¶ÈÆ½¾ùÏÂÀ´Îª£ºn*O£¨k£©=O£¨n*k£©¡£ 
-3¡¢  µ±È»£¬¸üºÃµÄ°ì·¨ÊÇÎ¬»¤k¸öÔªËØµÄ×î´ó¶Ñ£¬Ô­ÀíÓëÉÏÊöµÚ3¸ö·½°¸Ò»ÖÂ£¬¼´ÓÃÈÝÁ¿ÎªkµÄ×î´ó¶Ñ´æ´¢×îÐ¡µÄk¸öÊý£¬´ËÊ±£¬k1<k2<...<kmax£¨kmaxÉèÎª´ó¶¥¶ÑÖÐ×î´óÔªËØ£©¡£ 
-±éÀúÒ»´ÎÊýÁÐ£¬n£¬Ã¿´Î±éÀúÒ»¸öÔªËØx£¬Óë¶Ñ¶¥ÔªËØ±È½Ï£¬x<kmax£¬¸üÐÂ¶Ñ£¨ÓÃÊ±logk£©£¬·ñÔò²»¸üÐÂ¶Ñ¡£ÕâÑùÏÂÀ´£¬×Ü·ÑÊ±O£¨n*logk£©¡£´Ë·½·¨µÃÒæÓÚÔÚ¶ÑÖÐ£¬²éÕÒµÈ¸÷Ïî²Ù×÷Ê±¼ä¸´ÔÓ¶È¾ùÎªlogk£¨²»È»£¬¾ÍÈçÉÏÊöË¼Â·2ËùÊö£ºÖ±½ÓÓÃÊý×éÒ²¿ÉÒÔÕÒ³öÇ°k¸öÐ¡µÄÔªËØ£¬ÓÃÊ±O£¨n*k£©£©¡£ 
- */  
-public class No30 {  
-  
-    /** 
-     *  
-     * @param krr 
-     * @param k 
-     * @return 
-     */  
-    public static int[] minK(int krr[],int k){  
-        int arr[] = new int[k];  
-        for(int i = 0;i<k;i++)  
-            arr[i] = krr[i];  
-        buildHeap(arr);  
-        for(int j = k;j<krr.length;j++){  
-            if(krr[j]<arr[0]){  
-                arr[0] = krr[j];  
-                maxHeap(arr,1,k);  
-            }  
-        }  
-        return arr;  
-    }  
-    /** 
-     * ½¨×î´ó¶Ñ 
-     * @param arr 
-     */  
-    public static void buildHeap(int arr[]){  
-        int heapsize = arr.length;  
-        for(int i=arr.length/2;i>0;i--)  
-            maxHeap(arr,i,heapsize);  
-    }  
-    /** 
-     * µ÷ÕûÎª×î´ó¶Ñ 
-     * @param arr 
-     * @param i 
-     * @param heapsize 
-     */  
-    public static void maxHeap(int arr[],int i,int heapsize){  
-        int largest = i;  
-        int left = 2*i;  
-        int right = 2*i+1;  
-        if(left<=heapsize&&arr[i-1]<arr[left-1])  
-            largest = left;  
-        if(right<=heapsize&&arr[largest-1]<arr[right-1])  
-            largest = right;  
-        if(largest!=i){  
-            int temp = arr[i-1];  
-            arr[i-1] = arr[largest-1];  
-            arr[largest-1] = temp;  
-            maxHeap(arr,largest,heapsize);  
-        }  
-    }  
-    public static void main(String[] args) {  
-        int krr[] = {1,3,4,2,7,8,9,10,14,16};  
-        int arr[] = minK(krr,4);  
-        for(int i =0;i<arr.length;i++)  
-            System.out.println(arr[i]);  
-  
-    }  
-  
+    public static void main(String[] args) {
+        int[] krr = {1, 3, 4, 2, 7, 8, 9, 10, 14, 16};
+        int[] arr = minK(krr, 4);
+        for (int i = 0; i < arr.length; i++)
+            System.out.println(arr[i]);
+
+    }
+
+    public static int[] minK(int[] krr, int k) {
+        int[] arr = new int[k];
+        for (int i = 0; i < k; i++)
+            arr[i] = krr[i];
+        buildHeap(arr);
+        for (int j = k; j < krr.length; j++) {
+            if (krr[j] < arr[0]) {
+                arr[0] = krr[j];
+                maxHeap(arr, 1, k);
+            }
+        }
+        return arr;
+    }
+
+
+    public static void buildHeap(int[] arr) {
+        int heapsize = arr.length;
+        for (int i = arr.length / 2; i > 0; i--)
+            maxHeap(arr, i, heapsize);
+    }
+
+    public static void maxHeap(int[] arr, int i, int heapsize) {
+        int largest = i;
+        int left = 2 * i;
+        int right = 2 * i + 1;
+        if (left <= heapsize && arr[i - 1] < arr[left - 1])
+            largest = left;
+        if (right <= heapsize && arr[largest - 1] < arr[right - 1])
+            largest = right;
+        if (largest != i) {
+            int temp = arr[i - 1];
+            arr[i - 1] = arr[largest - 1];
+            arr[largest - 1] = temp;
+            maxHeap(arr, largest, heapsize);
+        }
+    }
+
+
 } 

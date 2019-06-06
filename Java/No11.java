@@ -1,25 +1,26 @@
+/**
+ * å®ç°å‡½æ•°double Power(double base,int exponent)ï¼Œ
+ * æ±‚baseçš„exponentæ¬¡æ–¹ã€‚ä¸å¾—ä½¿ç”¨åº“å‡½æ•°ï¼Œ
+ * åŒæ—¶ä¸éœ€è¦è€ƒè™‘å¤§æ•°é—®é¢˜ã€‚
+ */
 
 public class No11 {
 
-	/**
-	 * .ÊµÏÖº¯Êıdouble Power(double base,int exponent)£¬
-	 * ÇóbaseµÄexponent´Î·½¡£²»µÃÊ¹ÓÃ¿âº¯Êı£¬
-	 * Í¬Ê±²»ĞèÒª¿¼ÂÇ´óÊıÎÊÌâ¡£
-	 */
-	public static void main(String[] args) {
-			System.out.println(Power(2.0, 3));
-	}
-	public static double Power(double base,int exponent) {
-		if(exponent==0)
-			return 1;
-		if(exponent==1)
-			return base;
-		
-		double result=Power(base, exponent>>1);
-		result *=result;
-		if((exponent&0x1)==1){
-			result*=base;
-		}
-		return result;
-	}
+    public static void main(String[] args) {
+        System.out.println(Power(2.0, 3));
+    }
+
+    public static double Power(double base, int exponent) {
+        if (exponent == 0)
+            return 1;
+        if (exponent == 1)
+            return base;
+
+        double result = Power(base, exponent >> 1);
+        result *= result;
+        if ((exponent & 0x1) == 1) {
+            result *= base;
+        }
+        return result;
+    }
 }

@@ -1,22 +1,23 @@
+/**
+ * 0~n-1è¿™nä¸ªæ•°å­—æ’åˆ—æˆä¸€ä¸ªåœ†åœˆï¼Œ
+ * ä»æ•°å­—0å¼€å§‹æ¯æ¬¡ä»è¿™ä¸ªåœ†åœˆä¸­åˆ é™¤ç¬¬mä¸ªæ•°å­—ã€‚
+ * æ±‚å‡ºè¿™ä¸ªåœ†åœˆé‡Œå‰©ä¸‹çš„æœ€åä¸€ä¸ªæ•°å­—
+ */
 
 public class No45 {
 
-	/**
-	 * 0~n-1Õân¸öÊı×ÖÅÅÁĞ³ÉÒ»¸öÔ²È¦£¬
-	 * ´ÓÊı×Ö0¿ªÊ¼Ã¿´Î´ÓÕâ¸öÔ²È¦ÖĞÉ¾³ıµÚm¸öÊı×Ö¡£
-	 * Çó³öÕâ¸öÔ²È¦ÀïÊ£ÏÂµÄ×îºóÒ»¸öÊı×Ö
-	 */
-	public static void main(String[] args) {
-		System.out.println(lastRemaining(6, 3));
-	}
-	 public static int lastRemaining(int n,int m){ 
-		 if(n<1||m<1) 
-		  return -1; 
-		 int last=0; 
-		 for(int i=2;i<=n;i++){ 
-		  last=(last+m)%i;   
-		 } 
-		 return last; 
-		}
+    public static void main(String[] args) {
+        System.out.println(lastRemaining(6, 3));
+    }
+
+    public static int lastRemaining(int n, int m) {
+        if (n < 1 || m < 1)
+            return -1;
+        int last = 0;
+        for (int i = 2; i <= n; i++) {
+            last = (last + m) % i;
+        }
+        return last;
+    }
 
 }

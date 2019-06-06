@@ -1,23 +1,24 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œæ‰“å°å‡ºè¯¥å­—ç¬¦ä¸²ä¸­å­—ç¬¦çš„æ‰€æœ‰æŽ’åˆ—ã€‚
+ * ä¾‹å¦‚è¾“å…¥å­—ç¬¦ä¸²abcï¼Œ åˆ™æ‰“å°å‡ºç”±å­—ç¬¦ä¸²aã€bã€cæ‰€èƒ½
+ * æŽ’åˆ—å‡ºæ¥çš„æ‰€æœ‰å­—ç¬¦ä¸²abcã€acbã€bacã€bcaã€cabå’Œcba
+ */
 
 public class No28 {
-	/**
-	 * ÊäÈëÒ»¸ö×Ö·û´®£¬´òÓ¡³ö¸Ã×Ö·û´®ÖÐ×Ö·ûµÄËùÓÐÅÅÁÐ¡£
-	 * ÀýÈçÊäÈë×Ö·û´®abc£¬ Ôò´òÓ¡³öÓÉ×Ö·û´®a¡¢b¡¢cËùÄÜ
-	 * ÅÅÁÐ³öÀ´µÄËùÓÐ×Ö·û´®abc¡¢acb¡¢bac¡¢bca¡¢cabºÍcba
-	 */
-	public static void main(String[] args) {
-		myPrint("abc");
-	}
 
-	private static void myPrint(String str) {
-		if(str==null)
-			return;
-		char[] chs=str.toCharArray();
-		myPrint(chs,0);	
-	}
+    public static void main(String[] args) {
+        myPrint("abc");
+    }
 
-	private static void myPrint(char[] str, int i) {
-		if (i >= str.length)
+    private static void myPrint(String str) {
+        if (str == null)
+            return;
+        char[] chs = str.toCharArray();
+        myPrint(chs, 0);
+    }
+
+    private static void myPrint(char[] str, int i) {
+        if (i >= str.length)
             return;
         if (i == str.length - 1) {
             System.out.println(String.valueOf(str));
@@ -26,14 +27,14 @@ public class No28 {
                 char temp = str[j];
                 str[j] = str[i];
                 str[i] = temp;
-  
+
                 myPrint(str, i + 1);
-  
+
                 temp = str[j];
                 str[j] = str[i];
                 str[i] = temp;
             }
         }
-    } 
-		
+    }
+
 }

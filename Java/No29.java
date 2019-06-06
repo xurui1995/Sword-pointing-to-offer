@@ -1,35 +1,33 @@
+/**
+ * æ•°ç»„ä¸­æœ‰ä¸€ä¸ªæ•°å­—å‡ºç°çš„æ¬¡æ•°è¶…è¿‡æ•°ç»„é•¿åº¦çš„ä¸€åŠï¼Œ
+ * è¯·æ‰¾å‡ºè¿™ä¸ªæ•°å­—ã€‚ä¾‹å¦‚è¾“å…¥ä¸€ä¸ªé•¿åº¦ä¸º9çš„æ•°ç»„{1,2,3,2,2,2,5,4,2}ã€‚
+ * ç”±äºæ•°å­—2åœ¨æ•°ç»„ä¸­å‡ºç°äº†5æ¬¡ï¼Œè¶…è¿‡æ•°ç»„é•¿åº¦çš„ä¸€åŠï¼Œå› æ­¤è¾“å‡º2ã€‚
+ */
 
 public class No29 {
 
-	/**
-	 * Êı×éÖĞÓĞÒ»¸öÊı×Ö³öÏÖµÄ´ÎÊı³¬¹ıÊı×é³¤¶ÈµÄÒ»°ë£¬
-	 * ÇëÕÒ³öÕâ¸öÊı×Ö¡£ÀıÈçÊäÈëÒ»¸ö³¤¶ÈÎª9µÄÊı×é{1,2,3,2,2,2,5,4,2}¡£
-	 * ÓÉÓÚÊı×Ö2ÔÚÊı×éÖĞ³öÏÖÁË5´Î£¬³¬¹ıÊı×é³¤¶ÈµÄÒ»°ë£¬Òò´ËÊä³ö2¡£
-	 */
-	public static void main(String[] args) {
-		int[] arr={1,2,3,2,2,2,5,4,2};
-		System.out.println(findNum(arr));
-	}
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 2, 2, 2, 5, 4, 2};
+        System.out.println(findNum(arr));
+    }
 
-	private static Integer findNum(int[] arr) {
-		if(arr==null)
-			return  null;
-		
-		int result=arr[0];
-		int count=1;
-		
-		for(int i=1;i<arr.length;i++){
-			if(count==0){
-				result=arr[i];
-				count=1;
-			}
-			else if(arr[i]==result){
-				count++;
-			}
-			else{
-				count--;
-			}
-		}
-		return result;
-	}
+    private static Integer findNum(int[] arr) {
+        if (arr == null)
+            return null;
+
+        int result = arr[0];
+        int count = 1;
+
+        for (int i = 1; i < arr.length; i++) {
+            if (count == 0) {
+                result = arr[i];
+                count = 1;
+            } else if (arr[i] == result) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+        return result;
+    }
 }

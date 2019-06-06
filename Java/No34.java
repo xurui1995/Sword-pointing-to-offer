@@ -1,41 +1,41 @@
+/**
+ * æˆ‘ä»¬æŠŠåªåŒ…å«å› å­2,3å’Œ5çš„æ•°ç§°ä½œä¸‘æ•°ã€‚æ±‚æŒ‰ä»å°åˆ°å¤§çš„é¡ºåºçš„ç¬¬1500ä¸ªä¸‘æ•°ã€‚
+ * ä¾‹å¦‚6ã€8éƒ½æ˜¯ä¸‘æ•°ï¼Œä½†14ä¸æ˜¯ï¼Œå› ä¸ºå®ƒåŒ…å«å› å­7.ä¹ æƒ¯ä¸Šæˆ‘ä»¬æŠŠ1å½“åšç¬¬ä¸€ä¸ªä¸‘æ•°ã€‚
+ */
 
 public class No34 {
 
-	/**
-	 * ÎÒÃÇ°ÑÖ»°üº¬Òò×Ó2,3ºÍ5µÄÊı³Æ×÷³óÊı¡£Çó°´´ÓĞ¡µ½´óµÄË³ĞòµÄµÚ1500¸ö³óÊı¡£
-	 * ÀıÈç6¡¢8¶¼ÊÇ³óÊı£¬µ«14²»ÊÇ£¬ÒòÎªËü°üº¬Òò×Ó7.Ï°¹ßÉÏÎÒÃÇ°Ñ1µ±×öµÚÒ»¸ö³óÊı¡£
-	 */
-	public static void main(String[] args) {
-	
-		System.out.println(getUgly(20));
-		
-	}
+    public static void main(String[] args) {
 
-	private static int getUgly(int n) {
-		if(n<0)
-			return 0;
-		int[] uglyArray=new int[n];
-		uglyArray[0]=1;		
-		int multiply2 = 0;  
-        int multiply3 = 0;  
+        System.out.println(getUgly(20));
+
+    }
+
+    private static int getUgly(int n) {
+        if (n < 0)
+            return 0;
+        int[] uglyArray = new int[n];
+        uglyArray[0] = 1;
+        int multiply2 = 0;
+        int multiply3 = 0;
         int multiply5 = 0;
-        for(int i = 1;i<n;i++){  
-            int min = getMin(uglyArray[multiply2]*2,uglyArray[multiply3]*3,uglyArray[multiply5]*5);  
-            uglyArray[i] = min; 
+        for (int i = 1; i < n; i++) {
+            int min = getMin(uglyArray[multiply2] * 2, uglyArray[multiply3] * 3, uglyArray[multiply5] * 5);
+            uglyArray[i] = min;
             System.out.println(uglyArray[i]);
-            while(uglyArray[multiply2]*2 == uglyArray[i])  
-                multiply2++;  
-            while(uglyArray[multiply3]*3 == uglyArray[i])  
-                multiply3++;  
-            while(uglyArray[multiply5]*5 == uglyArray[i])  
-                multiply5++;  
-        }  
-		return uglyArray[n-1];
-	}
+            while (uglyArray[multiply2] * 2 == uglyArray[i])
+                multiply2++;
+            while (uglyArray[multiply3] * 3 == uglyArray[i])
+                multiply3++;
+            while (uglyArray[multiply5] * 5 == uglyArray[i])
+                multiply5++;
+        }
+        return uglyArray[n - 1];
+    }
 
-	private static int getMin(int i, int j, int k) {
-		int min=(i<j)?i:j;
-		return (min<k)?min:k;
-	}
+    private static int getMin(int i, int j, int k) {
+        int min = (i < j) ? i : j;
+        return (min < k) ? min : k;
+    }
 
 }

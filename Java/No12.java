@@ -1,43 +1,42 @@
+/**
+ * è¾“å…¥æ•°å­—nï¼ŒæŒ‰é¡ºåºæ‰“å°å‡ºä»1æœ€å¤§çš„nä½åè¿›åˆ¶æ•°ã€‚
+ * æ¯”å¦‚è¾“å…¥3ï¼Œåˆ™æ‰“å°å‡º1ã€2ã€3ä¸€ç›´åˆ°æœ€å¤§çš„3ä½æ•°å³999
+ */
 
 public class No12 {
 
-	/**
-	 * ÊäÈëÊı×Ön£¬°´Ë³Ğò´òÓ¡³ö´Ó1×î´óµÄnÎ»Ê®½øÖÆÊı¡£
-	 * ±ÈÈçÊäÈë3£¬Ôò´òÓ¡³ö1¡¢2¡¢3Ò»Ö±µ½×î´óµÄ3Î»Êı¼´999 
-	 */
-	public static void main(String[] args) {
-		printNum(3);
-	}
+    public static void main(String[] args) {
+        printNum(3);
+    }
 
-	private static void printNum(int n) {
-		if(n<0)
-			return;
-		int[] array=new int[n];
-		printArray(array,0);
-	}
+    private static void printNum(int n) {
+        if (n < 0)
+            return;
+        int[] array = new int[n];
+        printArray(array, 0);
+    }
 
-	private static void printArray(int[] array, int n) {
-		
-		if(n!=array.length){
-			for(int i=0;i<10;i++){
-				array[n]=i;
-				printArray(array, n+1);		
-			}
-		}
-		else{
-			boolean flag=false;
-			for(int j=0;j<array.length;j++){
-				if(array[j]!=0){
-					flag=true;
-				}
-				if(flag){
-					System.out.print(array[j]);
-				}
-			}
-			if(flag)    //È¥µô¿Õ°×ĞĞ
-			System.out.println();
-		}
-		
-	}
+    private static void printArray(int[] array, int n) {
 
+        if (n != array.length) {
+            for (int i = 0; i < 10; i++) {
+                array[n] = i;
+                printArray(array, n + 1);
+            }
+        } else {
+            boolean flag = false;
+            for (int j = 0; j < array.length; j++) {
+                if (array[j] != 0) {
+                    flag = true;
+                }
+                if (flag) {
+                    System.out.print(array[j]);
+                }
+            }
+            // å»æ‰ç©ºç™½è¡Œ
+            if (flag) {
+                System.out.println();
+            }
+        }
+    }
 }

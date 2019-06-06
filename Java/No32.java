@@ -1,33 +1,33 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªæ•´æ•°nï¼Œæ±‚ä»1åˆ°nè¿™nä¸ªæ•´æ•°çš„åè¿›åˆ¶è¡¨ç¤ºä¸­1å‡ºç°çš„æ¬¡æ•°ã€‚
+ * ä¾‹å¦‚è¾“å…¥12ï¼Œä»1åˆ°12è¿™äº›æ•´æ•°ä¸­åŒ…å«1çš„æ•°å­—æœ‰1,10,11å’Œ12,1ä¸€å…±å‡ºç°5æ¬¡ã€‚
+ */
 
 public class No32 {
 
-	/**
-	 * ÊäÈëÒ»¸öÕûÊın£¬Çó´Ó1µ½nÕân¸öÕûÊıµÄÊ®½øÖÆ±íÊ¾ÖĞ1³öÏÖµÄ´ÎÊı¡£
-	 * ÀıÈçÊäÈë12£¬´Ó1µ½12ÕâĞ©ÕûÊıÖĞ°üº¬1µÄÊı×ÖÓĞ1,10,11ºÍ12,1Ò»¹²³öÏÖ5´Î¡£
-	 */
-	public static void main(String[] args) {
-		System.out.println(countOne(115));
-		
-	}
+    public static void main(String[] args) {
+        System.out.println(countOne(115));
 
-	private static long countOne(int n) {
-		long count =0;
-		long i=1;
-		long current=0,after=0,before=0;
-		while((n/i)!=0){
-			current=(n/i)%10;
-			before=n/(i*10);
-			after=n-(n/i)*i;
-			
-			if(current>1)
-				count=count+(before+1)*i;
-			else if(current==0)
-				count=count+before*i;
-			else if(current==1)
-				count=count+before*i+after+1;			
-			i=i*10;						
-		}
-		return count;
-	}
+    }
+
+    private static long countOne(int n) {
+        long count = 0;
+        long i = 1;
+        long current = 0, after = 0, before = 0;
+        while ((n / i) != 0) {
+            current = (n / i) % 10;
+            before = n / (i * 10);
+            after = n - (n / i) * i;
+
+            if (current > 1)
+                count = count + (before + 1) * i;
+            else if (current == 0)
+                count = count + before * i;
+            else if (current == 1)
+                count = count + before * i + after + 1;
+            i = i * 10;
+        }
+        return count;
+    }
 
 }

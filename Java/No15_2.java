@@ -1,38 +1,41 @@
+/**
+ * æ±‚é“¾è¡¨çš„ä¸­é—´ç»“ç‚¹ã€‚å¦‚æœé“¾è¡¨ä¸­ç»“ç‚¹æ€»æ•°ä¸ºå¥‡æ•°ï¼Œ
+ * è¿”å›ä¸­é—´ç»“ç‚¹ï¼›å¦‚æœç»“ç‚¹æ€»æ•°ä¸ºå¶æ•°ï¼Œè¿”å›ä¸­é—´ä¸¤ä¸ªç»“ç‚¹çš„ä»»æ„ä¸€ä¸ª
+ */
 
 public class No15_2 {
+    public static void main(String[] args) {
+        Node15 a = new Node15("1");
+        Node15 b = new Node15("2");
+        Node15 c = new Node15("3");
+        Node15 d = new Node15("4");
+        Node15 e = new Node15("5");
+        Node15 f = new Node15("6");
+        Node15 g = new Node15("7");
 
-	/**
-	 * ÇóÁ´±íµÄÖĞ¼ä½áµã¡£Èç¹ûÁ´±íÖĞ½áµã×ÜÊıÎªÆæÊı£¬
-	 * ·µ»ØÖĞ¼ä½áµã£»Èç¹û½áµã×ÜÊıÎªÅ¼Êı£¬·µ»ØÖĞ¼äÁ½¸ö½áµãµÄÈÎÒâÒ»¸ö
-	 */
-	public static void main(String[] args) {
-		Node15 a=new Node15("1");
-		Node15 b=new Node15("2");
-		Node15 c=new Node15("3");
-		Node15 d=new Node15("4");
-		Node15 e=new Node15("5");
-		Node15 f=new Node15("6");
-		Node15 g=new Node15("7");
-		
-		a.setNext(b);b.setNext(c);c.setNext(d);
-		d.setNext(e);e.setNext(f);f.setNext(g);
-		Node15 mid=getMid(a);
-		System.out.println(mid.getData());
-	}
+        a.setNext(b);
+        b.setNext(c);
+        c.setNext(d);
+        d.setNext(e);
+        e.setNext(f);
+        f.setNext(g);
+        Node15 mid = getMid(a);
+        System.out.println(mid.getData());
+    }
 
-	private static Node15 getMid(Node15 a) {
-		
-		if(a==null){
-			return null;
-		}
-		Node15 slow=a;
-		Node15 fast=a;
-		while(fast.getNext()!=null&&fast.getNext().getNext()!=null){	
-			slow=slow.getNext();		
-			fast=fast.getNext().getNext();	
-		}
-		
-		return slow;
-	}
+    private static Node15 getMid(Node15 a) {
+
+        if (a == null) {
+            return null;
+        }
+        Node15 slow = a;
+        Node15 fast = a;
+        while (fast.getNext() != null && fast.getNext().getNext() != null) {
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+        }
+
+        return slow;
+    }
 
 }

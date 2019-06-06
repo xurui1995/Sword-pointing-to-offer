@@ -1,45 +1,44 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªæ•´æ•°æ•°ç»„ï¼Œå®ç°ä¸€ä¸ªå‡½æ•°æ¥è°ƒæ•´è¯¥æ•°ç»„ä¸­æ•°å­—çš„é¡ºåºï¼Œ
+ * ä½¿å¾—æ‰€æœ‰å¥‡æ•°ä½äºæ•°ç»„çš„å‰åŠéƒ¨åˆ†ï¼Œæ‰€æœ‰å¶æ•°ä½äºæ•°ç»„çš„ååŠéƒ¨åˆ†ã€‚
+ */
 
 public class No14 {
 
-	/**
-	 * ÊäÈëÒ»¸öÕûÊıÊı×é£¬ÊµÏÖÒ»¸öº¯ÊıÀ´µ÷Õû¸ÃÊı×éÖĞÊı×ÖµÄË³Ğò£¬
-	 * Ê¹µÃËùÓĞÆæÊıÎ»ÓÚÊı×éµÄÇ°°ë²¿·Ö£¬ËùÓĞÅ¼ÊıÎ»ÓÚÊı×éµÄºó°ë²¿·Ö¡£
-	 */
-	public static void main(String[] args) {
-		int[] array={3,7,4,8,23,56,77,89,46,11,66,77};
-		mysort(array);
-		for(int a:array){
-			System.out.println(" "+a);
-		}				
-	}
+    public static void main(String[] args) {
+        int[] array = {3, 7, 4, 8, 23, 56, 77, 89, 46, 11, 66, 77};
+        mysort(array);
+        for (int a : array) {
+            System.out.println(" " + a);
+        }
+    }
 
-	private static void mysort(int[] array) {
-		if(array==null){
-			return ;
-		}
-		int left=0;
-		int right=array.length-1;
-		while(left<right){
-			while(left<right&&!isEven(array[left])){
-				left++;
-			}
-			while(left<right&&isEven(array[right])){
-				right--;
-			}
-			if(left<right){
-				int temp=array[right];
-				array[right]=array[left];
-				array[left]=temp;
-			}
-			if(left>=right){
-				break;
-			}
-		}
-	}
+    private static void mysort(int[] array) {
+        if (array == null) {
+            return;
+        }
+        int left = 0;
+        int right = array.length - 1;
+        while (left < right) {
+            while (left < right && !isEven(array[left])) {
+                left++;
+            }
+            while (left < right && isEven(array[right])) {
+                right--;
+            }
+            if (left < right) {
+                int temp = array[right];
+                array[right] = array[left];
+                array[left] = temp;
+            }
+            if (left >= right) {
+                break;
+            }
+        }
+    }
 
-	private static boolean isEven(int i) {
-		
-		return (i&0x1)==0;
-	}
+    private static boolean isEven(int i) {
+        return (i & 0x1) == 0;
+    }
 
 }

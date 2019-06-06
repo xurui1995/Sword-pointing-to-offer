@@ -1,49 +1,49 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªè‹±æ–‡å¥å­ï¼Œç¿»è½¬å¥å­ä¸­å•è¯çš„é¡ºåºï¼Œä½†å•è¯å†…å­—ç¬¦çš„é¡ºåºä¸å˜ã€‚ä¸ºç®€å•èµ·è§ï¼Œæ ‡ç‚¹ç¬¦å·å’Œæ™®é€šå­—æ¯ä¸€æ ·å¤„ç†ã€‚
+ * ä¾‹å¦‚è¾“å…¥å­—ç¬¦ä¸²"I am student."ï¼Œåˆ™è¾“å‡º"student. a am I"
+ */
 
 public class No42 {
 
-	/**
-	 * ÊäÈëÒ»¸öÓ¢ÎÄ¾ä×Ó£¬·­×ª¾ä×ÓÖĞµ¥´ÊµÄË³Ğò£¬µ«µ¥´ÊÄÚ×Ö·ûµÄË³Ğò²»±ä¡£Îª¼òµ¥Æğ¼û£¬±êµã·ûºÅºÍÆÕÍ¨×ÖÄ¸Ò»Ñù´¦Àí¡£
-	 * ÀıÈçÊäÈë×Ö·û´®"I am student."£¬ÔòÊä³ö"student. a am I"
-	 */
-	public static void main(String[] args) {
-		 String string="I am a student."; 
-		
-		 reverseSentence(string);
-	}
 
-	private static void reverseSentence(String str) {
-		if(str==null)
-			return;
-		char[] arr=str.toCharArray();
-		
-		reverse(arr,0,arr.length-1);
-		int start=0;
-		int end=0;
-		for(char i=0;i<arr.length;i++){
-			if(arr[i]==' '){
-				reverse(arr, start, end);
-				end++;
-				start=end;
-			}else if(i==arr.length){
-				end++;
-				reverse(arr, start, end);
-			}
-			else{
-				end++;
-			}		
-		}
-		
-		for(char c:arr){
-			System.out.print(c);
-		}
-	}
+    public static void main(String[] args) {
+        String string = "I am a student.";
 
-	private static void reverse(char[] arr,int start,int end) {
-		for(int i=start,j=end;i<=j;i++,j--){
-			char temp=arr[i];
-			arr[i]=arr[j];
-			arr[j]=temp;
-		}
-	}
+        reverseSentence(string);
+    }
+
+    private static void reverseSentence(String str) {
+        if (str == null)
+            return;
+        char[] arr = str.toCharArray();
+
+        reverse(arr, 0, arr.length - 1);
+        int start = 0;
+        int end = 0;
+        for (char i = 0; i < arr.length; i++) {
+            if (arr[i] == ' ') {
+                reverse(arr, start, end);
+                end++;
+                start = end;
+            } else if (i == arr.length) {
+                end++;
+                reverse(arr, start, end);
+            } else {
+                end++;
+            }
+        }
+
+        for (char c : arr) {
+            System.out.print(c);
+        }
+    }
+
+    private static void reverse(char[] arr, int start, int end) {
+        for (int i = start, j = end; i <= j; i++, j--) {
+            char temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
 
 }

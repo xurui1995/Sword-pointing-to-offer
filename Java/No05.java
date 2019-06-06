@@ -1,5 +1,8 @@
-public class No05 {
+/**
+ * 输入一个链表的头节点，从尾到头打印每个节点的值。
+ */
 
+public class No05 {
 
     public static void main(String[] args) {
         Node node1 = new Node("A");

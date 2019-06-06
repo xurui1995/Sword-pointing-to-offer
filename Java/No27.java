@@ -1,59 +1,61 @@
-
+/**
+ * è¾“å…¥ä¸€é¢—äºŒå‰æœç´¢æ ‘ï¼Œå°†è¯¥äºŒå‰æœç´¢æ ‘è½¬æ¢æˆä¸€ä¸ªæ’åºçš„åŒå‘é“¾è¡¨ã€‚
+ * è¦æ±‚ä¸èƒ½åˆ›å»ºäººå’Œæ–°çš„ç»“ç‚¹ï¼Œåªèƒ½è°ƒæ•´æ ‘ä¸­ç»“ç‚¹æŒ‡é’ˆçš„æŒ‡å‘ã€‚
+ */
 
 public class No27 {
 
-	/**
-	 * .ÊäÈëÒ»¿Å¶ş²æËÑË÷Ê÷£¬½«¸Ã¶ş²æËÑË÷Ê÷×ª»»³ÉÒ»¸öÅÅĞòµÄË«ÏòÁ´±í¡£
-	 * ÒªÇó²»ÄÜ´´½¨ÈËºÍĞÂµÄ½áµã£¬Ö»ÄÜµ÷ÕûÊ÷ÖĞ½áµãÖ¸ÕëµÄÖ¸Ïò¡£
-	 */
-	public static void main(String[] args) {
-		BinaryTreeNode root=new BinaryTreeNode(10);
-		BinaryTreeNode node1=new BinaryTreeNode(6);
-		BinaryTreeNode node2=new BinaryTreeNode(14);
-		BinaryTreeNode node3=new BinaryTreeNode(4);
-		BinaryTreeNode node4=new BinaryTreeNode(8);
-		BinaryTreeNode node5=new BinaryTreeNode(12);
-		BinaryTreeNode node6=new BinaryTreeNode(16);
-		root.setLchildNode(node1);root.setRchildNode(node2);
-		node1.setLchildNode(node3);node1.setRchildNode(node4);
-		node2.setLchildNode(node5);node2.setRchildNode(node6);
-		
-		BinaryTreeNode head=covert(root);
-		
-		while(head!=null){
-			System.out.println(head.getData());
-			head=head.getRchildNode();
-		}
-	}
+    public static void main(String[] args) {
+        BinaryTreeNode root = new BinaryTreeNode(10);
+        BinaryTreeNode node1 = new BinaryTreeNode(6);
+        BinaryTreeNode node2 = new BinaryTreeNode(14);
+        BinaryTreeNode node3 = new BinaryTreeNode(4);
+        BinaryTreeNode node4 = new BinaryTreeNode(8);
+        BinaryTreeNode node5 = new BinaryTreeNode(12);
+        BinaryTreeNode node6 = new BinaryTreeNode(16);
+        root.setLchildNode(node1);
+        root.setRchildNode(node2);
+        node1.setLchildNode(node3);
+        node1.setRchildNode(node4);
+        node2.setLchildNode(node5);
+        node2.setRchildNode(node6);
 
-	private static BinaryTreeNode covert(BinaryTreeNode root) {
-		BinaryTreeNode lastNodeList=null;
-		lastNodeList=convertNode(root,lastNodeList);
-		while (lastNodeList!=null&&lastNodeList.getLchildNode()!=null) {
-			lastNodeList=lastNodeList.getLchildNode();	
-		}		
-		return lastNodeList;	
-	}
+        BinaryTreeNode head = covert(root);
 
-	private static BinaryTreeNode convertNode(BinaryTreeNode root,
-			BinaryTreeNode lastNodeList) {
-		if(root==null)
-			return null;
-		BinaryTreeNode current=root;
-		if(current.getLchildNode()!=null){	
-			lastNodeList=convertNode(current.getLchildNode(), lastNodeList);
-		}
-		
-		current.setLchildNode(lastNodeList);
-		
-		if(lastNodeList!=null){
-			lastNodeList.setRchildNode(current);
-		}
-		lastNodeList=current;
-		if(current.getRchildNode()!=null){
-			lastNodeList=convertNode(current.getRchildNode(), lastNodeList);
-		}
-		return lastNodeList;
-	}
+        while (head != null) {
+            System.out.println(head.getData());
+            head = head.getRchildNode();
+        }
+    }
+
+    private static BinaryTreeNode covert(BinaryTreeNode root) {
+        BinaryTreeNode lastNodeList = null;
+        lastNodeList = convertNode(root, lastNodeList);
+        while (lastNodeList != null && lastNodeList.getLchildNode() != null) {
+            lastNodeList = lastNodeList.getLchildNode();
+        }
+        return lastNodeList;
+    }
+
+    private static BinaryTreeNode convertNode(BinaryTreeNode root,
+                                              BinaryTreeNode lastNodeList) {
+        if (root == null)
+            return null;
+        BinaryTreeNode current = root;
+        if (current.getLchildNode() != null) {
+            lastNodeList = convertNode(current.getLchildNode(), lastNodeList);
+        }
+
+        current.setLchildNode(lastNodeList);
+
+        if (lastNodeList != null) {
+            lastNodeList.setRchildNode(current);
+        }
+        lastNodeList = current;
+        if (current.getRchildNode() != null) {
+            lastNodeList = convertNode(current.getRchildNode(), lastNodeList);
+        }
+        return lastNodeList;
+    }
 
 }

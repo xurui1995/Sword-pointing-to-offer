@@ -1,53 +1,53 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªæ•´æ•°æ•°ç»„ï¼Œ
+ * åˆ¤æ–­è¯¥æ•°ç»„æ˜¯ä¸æ˜¯æŸäºŒå‰æœç´¢æ ‘çš„åŽåºéåŽ†çš„ç»“æžœã€‚
+ * å¦‚æžœæ˜¯åˆ™è¿”å›žtrueï¼Œå¦åˆ™è¿”å›žfalseã€‚
+ * å‡è®¾è¾“å…¥çš„æ•°ç»„çš„ä»»æ„ä¸¤ä¸ªæ•°å­—éƒ½äº’ä¸ç›¸åŒ
+ */
 
 public class No24 {
 
-	/**
-	 * ÊäÈëÒ»¸öÕûÊýÊý×é£¬
-	 * ÅÐ¶Ï¸ÃÊý×éÊÇ²»ÊÇÄ³¶þ²æËÑË÷Ê÷µÄºóÐò±éÀúµÄ½á¹û¡£
-	 * Èç¹ûÊÇÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
-	 * ¼ÙÉèÊäÈëµÄÊý×éµÄÈÎÒâÁ½¸öÊý×Ö¶¼»¥²»ÏàÍ¬
-	 */
-	public static void main(String[] args) {
-			int[] array={5,7,6,9,11,10,8};
-		   // int[] array={7,4,6,5};
-			
-			boolean b=verfiySequenceOfBST(array,0,6);
-			System.out.println(b);
-	}
+    public static void main(String[] args) {
+        int[] array = {5, 7, 6, 9, 11, 10, 8};
+        // int[] array={7,4,6,5};
 
-	private static boolean verfiySequenceOfBST(int[] array,int start ,int end) {
-		
-	if(array==null||start>end||start<0||end<0)
-			return false;
-	
-	if(start==end)
-		return true;
-	
-		int root=array[end];
-		
-		int i=start;
-		for(;i<=end;i++){
-			if(array[i]>root)
-				break;
-		}
-		
-		int j=i;
-		for(;j<=end;j++){
-			if(array[j]<root)
-				return false;
-		}
-		
-		boolean left=true;
-		if(i>start){
-			left=verfiySequenceOfBST(array,start,i-1);
-		}
-		
-		boolean right=true;
-		if(i<end){
-			
-			right=verfiySequenceOfBST(array,i,end-1);
-		}
-		return (left&&right);
-	}
+        boolean b = verfiySequenceOfBST(array, 0, 6);
+        System.out.println(b);
+    }
+
+    private static boolean verfiySequenceOfBST(int[] array, int start, int end) {
+
+        if (array == null || start > end || start < 0 || end < 0)
+            return false;
+
+        if (start == end)
+            return true;
+
+        int root = array[end];
+
+        int i = start;
+        for (; i <= end; i++) {
+            if (array[i] > root)
+                break;
+        }
+
+        int j = i;
+        for (; j <= end; j++) {
+            if (array[j] < root)
+                return false;
+        }
+
+        boolean left = true;
+        if (i > start) {
+            left = verfiySequenceOfBST(array, start, i - 1);
+        }
+
+        boolean right = true;
+        if (i < end) {
+
+            right = verfiySequenceOfBST(array, i, end - 1);
+        }
+        return (left && right);
+    }
 
 }

@@ -1,11 +1,11 @@
 import java.util.Stack;
 
+/**
+ * 两个栈建立队列
+ */
 
 public class No07 {
 
-    /**
-     * 两个栈建立队列
-     */
     private Stack s1 = new Stack();
     private Stack s2 = new Stack();
 

@@ -1,68 +1,67 @@
+/**
+ * ç»™å®šå•å‘é“¾è¡¨çš„å¤´æŒ‡é’ˆå’Œä¸€ä¸ªç»“ç‚¹æŒ‡é’ˆï¼Œ å®šä¹‰ä¸€ä¸ªå‡½æ•°åœ¨Oï¼ˆ1ï¼‰æ—¶é—´åˆ é™¤è¯¥èŠ‚ç‚¹
+ */
 
 public class No13 {
 
-	/**
-	 * ¸ø¶¨µ¥ÏòÁ´±íµÄÍ·Ö¸ÕëºÍÒ»¸ö½áµãÖ¸Õë£¬ ¶¨ÒåÒ»¸öº¯ÊıÔÚO£¨1£©Ê±¼äÉ¾³ı¸Ã½Úµã
-	 */
-	public static void main(String[] args) {
-		MyNode a = new MyNode("A");
-		MyNode b = new MyNode("B");
-		MyNode c = new MyNode("C");
-		MyNode d = new MyNode("D");
-		a.setNext(b);b.setNext(c);c.setNext(d);
-		delete(a,d);
-		MyNode temp=a;
-		while(temp!=null){
-			System.out.println(temp.getData());
-			temp=temp.next;
-		}
-	}
+    public static void main(String[] args) {
+        MyNode a = new MyNode("A");
+        MyNode b = new MyNode("B");
+        MyNode c = new MyNode("C");
+        MyNode d = new MyNode("D");
+        a.setNext(b);
+        b.setNext(c);
+        c.setNext(d);
+        delete(a, d);
+        MyNode temp = a;
+        while (temp != null) {
+            System.out.println(temp.getData());
+            temp = temp.next;
+        }
+    }
 
-	private static void delete(MyNode head, MyNode c) {
-		//Èç¹ûÊÇÎ²½Úµã,Ö»ÄÜ±éÀúÉ¾³ı
-		if(c.next==null){
-			while(head.next!=c){
-				head=head.next;
-			}
-			head.next=null;
-		}
-		else if(head==c){
-			head=null;
-		}
-		else{
-			c.setData(c.getNext().getData());
-			c.setNext(c.getNext().getNext());
-		}
-		
-	}
+    private static void delete(MyNode head, MyNode c) {
+        // å¦‚æœæ˜¯å°¾èŠ‚ç‚¹,åªèƒ½éå†åˆ é™¤
+        if (c.next == null) {
+            while (head.next != c) {
+                head = head.next;
+            }
+            head.next = null;
+        } else if (head == c) {
+            head = null;
+        } else {
+            c.setData(c.getNext().getData());
+            c.setNext(c.getNext().getNext());
+        }
 
-	
+    }
+
 
 }
 
 class MyNode {
-	MyNode next;
-	String data;
+    MyNode next;
+    String data;
 
-	public MyNode(String data) {
-		super();
-		this.data = data;
-	}
+    public MyNode(String data) {
+        super();
+        this.data = data;
+    }
 
-	public MyNode getNext() {
-		return next;
-	}
+    public MyNode getNext() {
+        return next;
+    }
 
-	public void setNext(MyNode next) {
-		this.next = next;
-	}
+    public void setNext(MyNode next) {
+        this.next = next;
+    }
 
-	public String getData() {
-		return data;
-	}
+    public String getData() {
+        return data;
+    }
 
-	public void setData(String data) {
-		this.data = data;
-	}
+    public void setData(String data) {
+        this.data = data;
+    }
 
 }

@@ -1,49 +1,45 @@
 import java.util.Stack;
 
-import javax.sound.sampled.Line;
-
+/**
+ * è¾“å…¥ä¸¤ä¸ªæ•´æ•°åºåˆ—ï¼Œç¬¬ä¸€ä¸ªåºåˆ—è¡¨ç¤ºæ ˆçš„å‹å…¥é¡ºåºï¼Œ
+ * è¯·åˆ¤æ–­ç¬¬äºŒä¸ªåºåˆ—æ˜¯å¦ä¸ºè¯¥æ ˆçš„å¼¹å‡ºé¡ºåºã€‚
+ * å‡è®¾å‹å…¥æ ˆçš„æ‰€æœ‰æ•°å­—å‡ä¸ç›¸ç­‰ã€‚ä¾‹å¦‚åºåˆ—1ã€2ã€3ã€4ã€5æ˜¯æŸæ ˆ
+ * çš„å‹æ ˆåºåˆ—ï¼Œåºåˆ—4ã€5ã€3ã€2ã€1æ˜¯è¯¥å‹æ ˆåºåˆ—å¯¹åº”çš„ä¸€ä¸ªå¼¹å‡ºåºåˆ—
+ * ä½†4ã€3ã€5ã€1ã€2å°±ä¸å¯èƒ½æ˜¯è¯¥å‹æ ˆåºåˆ—çš„å¼¹å‡ºåºåˆ—
+ */
 
 public class No22 {
 
-	/**
-	 * .ÊäÈëÁ½¸öÕûÊıĞòÁĞ£¬µÚÒ»¸öĞòÁĞ±íÊ¾Õ»µÄÑ¹ÈëË³Ğò£¬
-	 * ÇëÅĞ¶ÏµÚ¶ş¸öĞòÁĞÊÇ·ñÎª¸ÃÕ»µÄµ¯³öË³Ğò¡£
-	 * ¼ÙÉèÑ¹ÈëÕ»µÄËùÓĞÊı×Ö¾ù²»ÏàµÈ¡£ÀıÈçĞòÁĞ1¡¢2¡¢3¡¢4¡¢5ÊÇÄ³Õ»
-	 * µÄÑ¹Õ»ĞòÁĞ£¬ĞòÁĞ4¡¢5¡¢3¡¢2¡¢1ÊÇ¸ÃÑ¹Õ»ĞòÁĞ¶ÔÓ¦µÄÒ»¸öµ¯³öĞòÁĞ
-	 * µ«4¡¢3¡¢5¡¢1¡¢2¾Í²»¿ÉÄÜÊÇ¸ÃÑ¹Õ»ĞòÁĞµÄµ¯³öĞòÁĞ
-	 */
-	public static void main(String[] args) {
-		Integer[] pushOrder={1,2,3,4,5};
-		Integer[] popOrder={4,5,3,1,2};
-		System.out.println(isRight(pushOrder,popOrder,5));
-	}
+    public static void main(String[] args) {
+        Integer[] pushOrder = {1, 2, 3, 4, 5};
+        Integer[] popOrder = {4, 5, 3, 1, 2};
+        System.out.println(isRight(pushOrder, popOrder, 5));
+    }
 
-	private static boolean isRight(Integer[] pushOrder, Integer[] popOrder, int n) {
-			
-			Stack<Integer> stack=new Stack<Integer>();
-			int count=0;
-			for(int i=0;i<popOrder.length;i++){
-				if(!stack.isEmpty()&&stack.peek()==popOrder[i])
-					stack.pop();
-				else{
-					if(count==pushOrder.length)
-						return false;
-					
-					else{
-						do{
-							stack.push(pushOrder[count++]);
-						}
-						while(stack.peek()!=popOrder[i]&&count!=pushOrder.length);
-						if(stack.peek()==popOrder[i])
-							stack.pop();
-						else{
-							return false;
-						}
-					}
-				}
-			}
-			return true;
-		
-	}
+    private static boolean isRight(Integer[] pushOrder, Integer[] popOrder, int n) {
+
+        Stack<Integer> stack = new Stack<Integer>();
+        int count = 0;
+        for (int i = 0; i < popOrder.length; i++) {
+            if (!stack.isEmpty() && stack.peek() == popOrder[i])
+                stack.pop();
+            else {
+                if (count == pushOrder.length)
+                    return false;
+                else {
+                    do {
+                        stack.push(pushOrder[count++]);
+                    }
+                    while (stack.peek() != popOrder[i] && count != pushOrder.length);
+                    if (stack.peek() == popOrder[i])
+                        stack.pop();
+                    else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
 }

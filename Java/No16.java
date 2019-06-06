@@ -1,13 +1,8 @@
+/**
+ * å®šä¹‰ä¸€ä¸ªå‡½æ•°ï¼Œè¾“å…¥ä¸€ä¸ªé“¾è¡¨çš„å¤´ç»“ç‚¹ï¼Œ
+ * åè½¬è¯¥é“¾è¡¨å¹¶è¾“å‡ºåè½¬åŽé“¾è¡¨çš„å¤´ç»“ç‚¹
+ */
 
+// å…·ä½“åŒNo5
 public class No16 {
-
-	/**
-	 * ¶¨ÒåÒ»¸öº¯Êý£¬ÊäÈëÒ»¸öÁ´±íµÄÍ·½áµã£¬
-	 * ·´×ª¸ÃÁ´±í²¢Êä³ö·´×ªºóÁ´±íµÄÍ·½áµã
-	 */
-	//¾ßÌåÍ¬No5
-	public static void main(String[] args) {
-			
-	}
-
 }

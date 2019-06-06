@@ -1,25 +1,25 @@
+/**
+ * è¾“å…¥ä¸€é¢—äºŒå‰æ ‘çš„æ ¹èŠ‚ç‚¹ï¼Œæ±‚è¯¥æ ‘çš„æ·±åº¦ã€‚
+ * ä»Žæ ¹èŠ‚ç‚¹åˆ°å¶èŠ‚ç‚¹ä¾æ¬¡ç»è¿‡çš„ç»“ç‚¹ï¼ˆå«æ ¹ã€å¶ç»“ç‚¹ï¼‰å½¢æˆæ ‘çš„ä¸€æ¡è·¯å¾„ï¼Œ
+ * æœ€é•¿è·¯å¾„çš„é•¿åº¦ä¸ºæ ‘çš„æ·±åº¦ã€‚
+ */
 
 public class No39 {
 
-	/**
-	 * ÊäÈëÒ»¿Å¶þ²æÊ÷µÄ¸ù½Úµã£¬Çó¸ÃÊ÷µÄÉî¶È¡£
-	 * ´Ó¸ù½Úµãµ½Ò¶½ÚµãÒÀ´Î¾­¹ýµÄ½áµã£¨º¬¸ù¡¢Ò¶½áµã£©ÐÎ³ÉÊ÷µÄÒ»ÌõÂ·¾¶£¬
-	 * ×î³¤Â·¾¶µÄ³¤¶ÈÎªÊ÷µÄÉî¶È¡£
-	 */
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	}
-	
-	 public int treeDepth(BinaryTreeNode root){ 
+    }
 
-		  if(root==null)    return 0; 
+    public int treeDepth(BinaryTreeNode root) {
 
-		  int left=treeDepth(root.getLchildNode()); 
+        if (root == null) return 0;
 
-		  int right=treeDepth(root.getRchildNode()); 
+        int left = treeDepth(root.getLchildNode());
 
-		  return (left>right)?left+1:right+1; 
+        int right = treeDepth(root.getRchildNode());
 
-		 }
+        return (left > right) ? left + 1 : right + 1;
+
+    }
 
 }

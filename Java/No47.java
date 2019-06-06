@@ -1,24 +1,23 @@
+/**
+ * å†™ä¸€ä¸ªå‡½æ•°ï¼Œæ±‚ä¸¤ä¸ªæ•´æ•°ä¹‹å’Œï¼Œ
+ * è¦æ±‚å‡½æ•°ä½“å†…éƒ¨ä¸èƒ½ä½¿ç”¨+ã€-ã€*ã€\å››åˆ™ä¸æ°´æš–ç¬¦å·
+ */
 
 public class No47 {
 
-	/**
-	 * Ğ´Ò»¸öº¯Êı£¬ÇóÁ½¸öÕûÊıÖ®ºÍ£¬
-	 * ÒªÇóº¯ÊıÌåÄÚ²¿²»ÄÜÊ¹ÓÃ+¡¢-¡¢*¡¢\ËÄÔòÓëË®Å¯·ûºÅ
-	 */
-	public static void main(String[] args) {
-		System.out.println(add(5, 8)); 	
-	}
+    public static void main(String[] args) {
+        System.out.println(add(5, 8));
+    }
 
-	private static int add(int num1, int num2) {
-		
-		 int sum,carry;  
-	        do{  
-	            sum = num1 ^ num2;  
-	            carry = (num1&num2) <<1;  
-	            num1 = sum;  
-	            num2 = carry;  
-	        }while(num2!=0);  
-	        return num1;  
-	}
+    private static int add(int num1, int num2) {
+        int sum, carry;
+        do {
+            sum = num1 ^ num2;
+            carry = (num1 & num2) << 1;
+            num1 = sum;
+            num2 = carry;
+        } while (num2 != 0);
+        return num1;
+    }
 
 }

@@ -1,40 +1,40 @@
 import java.util.Arrays;
 
+/**
+ * ä»æ‰‘å…‹ç‰Œä¸­éšæœºæŠ½5å¼ ç‰Œï¼Œåˆ¤æ–­æ˜¯ä¸æ˜¯ä¸€ä¸ªé¡ºå­ï¼Œ
+ * å³è¿™5å¼ ç‰Œæ˜¯ä¸æ˜¯è¿ç»­çš„ã€‚2~10ä¸ºæ•°å­—æœ¬èº«ï¼Œ
+ * Aä¸º1ï¼ŒJä¸º11ï¼ŒQä¸º12ï¼ŒKä¸º13ï¼Œè€Œå¤§ã€å°ç‹å¯ä»¥çœ‹æˆä»»æ„æ•°å­—
+ */
 
 public class No44 {
 
-	/**
-	 * ´ÓÆË¿ËÅÆÖĞËæ»ú³é5ÕÅÅÆ£¬ÅĞ¶ÏÊÇ²»ÊÇÒ»¸öË³×Ó£¬
-	 * ¼´Õâ5ÕÅÅÆÊÇ²»ÊÇÁ¬ĞøµÄ¡£2~10ÎªÊı×Ö±¾Éí£¬
-	 * AÎª1£¬JÎª11£¬QÎª12£¬KÎª13£¬¶ø´ó¡¢Ğ¡Íõ¿ÉÒÔ¿´³ÉÈÎÒâÊı×Ö
-	 */
-	public static void main(String[] args) {
-		int[] array={0,4,6,8,0}; 
-		 System.out.println(isContinuous(array));
-		
-	}
+    public static void main(String[] args) {
+        int[] array = {0, 4, 6, 8, 0};
+        System.out.println(isContinuous(array));
 
-	private static boolean isContinuous(int[] arr) {
-		
-		if(arr == null || arr.length!= 5)  
-            return false;  
-		 Arrays.sort(arr); 
-		 int numberZero=0; 
-		 int numberGap=0;
-		 for(int i=0;i<arr.length&&arr[i]==0;i++)
-			 numberZero++;
-		 
-		 int small=numberZero;
-		 int big=small+1;
-		 while(big<arr.length){
-			 if(arr[small]==arr[big])
-				 return false;
-			 
-			 numberGap+=arr[big]-arr[small]-1;
-			 small=big;
-			 big++;
-		 }
-		 return (numberGap>numberZero)?false:true;
-	}
+    }
+
+    private static boolean isContinuous(int[] arr) {
+
+        if (arr == null || arr.length != 5)
+            return false;
+        Arrays.sort(arr);
+        int numberZero = 0;
+        int numberGap = 0;
+        for (int i = 0; i < arr.length && arr[i] == 0; i++)
+            numberZero++;
+
+        int small = numberZero;
+        int big = small + 1;
+        while (big < arr.length) {
+            if (arr[small] == arr[big])
+                return false;
+
+            numberGap += arr[big] - arr[small] - 1;
+            small = big;
+            big++;
+        }
+        return numberGap <= numberZero;
+    }
 
 }

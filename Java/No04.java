@@ -1,9 +1,10 @@
+/**
+ * 请实现一个函数，把字符串中的每个空格替换成"%20"。
+ * 例如输入"We are happy"，则输出"We%20are%20happy"
+ */
+
 public class No04 {
 
-    /**
-     * 请实现一个函数，把字符串中的每个空格替换成"%20"。
-     * 例如输入"We are happy"，则输出"We%20are%20happy"
-     */
     public static void main(String[] args) {
         String str = "We are happy";
         char[] charArray = str.toCharArray();
@@ -31,16 +32,12 @@ public class No04 {
                 temp[j - 1] = '2';
                 temp[j - 2] = '%';
                 j = j - 3;
-
             } else {
                 temp[j] = charArray[i];
                 j--;
             }
             i--;
         }
-
         return new String(temp);
-
     }
-
 }

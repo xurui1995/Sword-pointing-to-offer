@@ -1,52 +1,54 @@
 import java.util.Stack;
 
+/**
+ * è¾“å…¥ä¸€é¢—äºŒå‰æ ‘å’Œä¸€ä¸ªæ•´æ•°ï¼Œæ‰“å°å‡ºäºŒå‰æ ‘ä¸­ç»“ç‚¹å€¼çš„å’Œä¸ºè¾“å…¥æ•´æ•°çš„æ‰€æœ‰è·¯å¾„ã€‚
+ * ä»æ ‘çš„æ ¹ç»“ç‚¹å¼€å§‹å¾€ä¸‹ä¸€ç›´åˆ°å¶ç»“ç‚¹æ‰€ç»è¿‡çš„ç»“ç‚¹å½¢æˆä¸€æ¡è·¯å¾„ã€‚
+ */
 
 public class No25 {
 
-	/**
-	 * ÊäÈëÒ»¿Å¶ş²æÊ÷ºÍÒ»¸öÕûÊı£¬´òÓ¡³ö¶ş²æÊ÷ÖĞ½áµãÖµµÄºÍÎªÊäÈëÕûÊıµÄËùÓĞÂ·¾¶¡£
-	 * ´ÓÊ÷µÄ¸ù½áµã¿ªÊ¼ÍùÏÂÒ»Ö±µ½Ò¶½áµãËù¾­¹ıµÄ½áµãĞÎ³ÉÒ»ÌõÂ·¾¶¡£
-	 */
-	public static void main(String[] args) {
-		
-		BinaryTreeNode root=new BinaryTreeNode(10);
-		BinaryTreeNode node1=new BinaryTreeNode(5);
-		BinaryTreeNode node2=new BinaryTreeNode(4);
-		BinaryTreeNode node3=new BinaryTreeNode(7);
-		BinaryTreeNode node4=new BinaryTreeNode(12);
-		root.setLchildNode(node1);root.setRchildNode(node4);
-		node1.setLchildNode(node2);node1.setRchildNode(node3);
-		findPath(root,22);
-	}
+    public static void main(String[] args) {
 
-	private static void findPath(BinaryTreeNode root, int i) {
-		if(root==null)
-			return;
-		Stack<Integer> stack=new Stack<Integer>();
-		int currentSum=0;
-		findPath(root,  i,stack,currentSum);		
-	}
+        BinaryTreeNode root = new BinaryTreeNode(10);
+        BinaryTreeNode node1 = new BinaryTreeNode(5);
+        BinaryTreeNode node2 = new BinaryTreeNode(4);
+        BinaryTreeNode node3 = new BinaryTreeNode(7);
+        BinaryTreeNode node4 = new BinaryTreeNode(12);
+        root.setLchildNode(node1);
+        root.setRchildNode(node4);
+        node1.setLchildNode(node2);
+        node1.setRchildNode(node3);
+        findPath(root, 22);
+    }
 
-	private static void findPath(BinaryTreeNode root, int i,
-			Stack<Integer> stack, int currentSum) {
-		currentSum+=root.getData();
-		stack.push(root.getData());
-		if(root.getLchildNode()==null&&root.getRchildNode()==null){
-			if(currentSum==i){
-				System.out.println("ÕÒµ½Â·¾¶");
-				for(int path:stack){
-					System.out.println(path+" ");
-				}
-			}
-		}
-		if (root.getLchildNode()!=null) {
-			findPath(root.getLchildNode(), i,stack,currentSum);
-		}
-		if(root.getRchildNode()!=null){
-			findPath(root.getRchildNode(), i, stack, currentSum);
-		}
-		
-		stack.pop();
-	}
+    private static void findPath(BinaryTreeNode root, int i) {
+        if (root == null)
+            return;
+        Stack<Integer> stack = new Stack<Integer>();
+        int currentSum = 0;
+        findPath(root, i, stack, currentSum);
+    }
+
+    private static void findPath(BinaryTreeNode root, int i,
+                                 Stack<Integer> stack, int currentSum) {
+        currentSum += root.getData();
+        stack.push(root.getData());
+        if (root.getLchildNode() == null && root.getRchildNode() == null) {
+            if (currentSum == i) {
+                System.out.println("æ‰¾åˆ°è·¯å¾„");
+                for (int path : stack) {
+                    System.out.println(path + " ");
+                }
+            }
+        }
+        if (root.getLchildNode() != null) {
+            findPath(root.getLchildNode(), i, stack, currentSum);
+        }
+        if (root.getRchildNode() != null) {
+            findPath(root.getRchildNode(), i, stack, currentSum);
+        }
+
+        stack.pop();
+    }
 
 }

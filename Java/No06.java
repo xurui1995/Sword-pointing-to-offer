@@ -1,7 +1,8 @@
+/**
+ * 根据前序遍历和中序遍历建立树
+ */
+
 public class No06 {
-    /**
-     * 根据前序遍历和中序遍历建立树
-     */
 
     public static void main(String[] args) {
         String preOrder = "12473568";

@@ -1,29 +1,29 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªæ•´å‹æ•°ç»„ï¼Œæ•°ç»„é‡Œæœ‰æ­£æ•°ï¼Œä¹Ÿæœ‰è´Ÿæ•°ã€‚
+ * æ•°ç»„ä¸­ä¸€ä¸ªæˆ–è¿ç»­çš„å¤šä¸ªæ•´æ•°ç»„æˆä¸€ä¸ªå­æ•°ç»„ã€‚
+ * æ±‚æ‰€æœ‰å­æ•°ç»„çš„å’Œçš„æœ€å¤§å€¼ã€‚è¦æ±‚æ—¶é—´å¤æ‚åº¦ä¸ºO(nï¼‰
+ */
 
 public class No31 {
 
-	/**
-	 * ÊäÈëÒ»¸öÕûĞÍÊı×é£¬Êı×éÀïÓĞÕıÊı£¬Ò²ÓĞ¸ºÊı¡£
-	 * Êı×éÖĞÒ»¸ö»òÁ¬ĞøµÄ¶à¸öÕûÊı×é³ÉÒ»¸ö×ÓÊı×é¡£
-	 * ÇóËùÓĞ×ÓÊı×éµÄºÍµÄ×î´óÖµ¡£ÒªÇóÊ±¼ä¸´ÔÓ¶ÈÎªO(n£©
-	 */
-	public static void main(String[] args) {
-		int[] arr={1,-2,3,10,-4,7,2,-5};
-		System.out.println(maxSub(arr));
-	}
+    public static void main(String[] args) {
+        int[] arr = {1, -2, 3, 10, -4, 7, 2, -5};
+        System.out.println(maxSub(arr));
+    }
 
-	private static int maxSub(int[] arr) {
-		int max=0;
-		int n=arr.length;
-		int sum=0;
-		for(int i=0;i<n;i++){
-			sum+=arr[i];
-			if(sum>max)
-				max=sum;
-			else if(sum<0)
-				sum=0;
-		}
-		return max;
-		
-	}
+    private static int maxSub(int[] arr) {
+        int max = 0;
+        int n = arr.length;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+            if (sum > max)
+                max = sum;
+            else if (sum < 0)
+                sum = 0;
+        }
+        return max;
+
+    }
 
 }

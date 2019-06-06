@@ -1,40 +1,40 @@
+/**
+ * è¾“å…¥ä¸€ä¸ªé€’å¢æ’åºçš„æ•°ç»„å’Œä¸€ä¸ªæ•°å­—sï¼Œ
+ * åœ¨æ•°ç»„ä¸­æŸ¥æ‰¾ä¸¤ä¸ªæ•°ï¼Œä½¿å¾—å®ƒä»¬çš„å’Œæ­£å¥½æ˜¯sã€‚
+ * å¦‚æœæœ‰å¤šå¯¹æ•°å­—çš„å’Œç­‰äºsï¼Œè¾“å‡ºä»»æ„ä¸€å¯¹å³å¯
+ */
 
 public class No41 {
 
-	/**
-	 * ÊäÈëÒ»¸öµİÔöÅÅĞòµÄÊı×éºÍÒ»¸öÊı×Ös£¬
-	 * ÔÚÊı×éÖĞ²éÕÒÁ½¸öÊı£¬Ê¹µÃËüÃÇµÄºÍÕıºÃÊÇs¡£
-	 * Èç¹ûÓĞ¶à¶ÔÊı×ÖµÄºÍµÈÓÚs£¬Êä³öÈÎÒâÒ»¶Ô¼´¿É
-	 */
-	public static void main(String[] args) {
-		int[] data={1,2,4,7,11,15};
-		System.out.println(findNumberWithSum(data, 15)); 
-	}
+    public static void main(String[] args) {
+        int[] data = {1, 2, 4, 7, 11, 15};
+        System.out.println(findNumberWithSum(data, 15));
+    }
 
-	private static boolean findNumberWithSum(int[] data, int sum) {
-		boolean found=false;
-		if(data==null)
-			return found;
-		int num1=0;
-		int num2=0;
-		int start=0;
-		int end=data.length-1;
-		while(start<end){
-			int curSum=data[start]+data[end];
-			if(curSum==sum){
-				num1=data[start];
-				num2=data[end];
-				found=true;
-				break;
-			}else if(curSum>sum)
-				end--;
-			 else 
-				start++;	
-		}
-		System.out.println(num1);
-		System.out.println(num2);
-		
-		return found;
-	}
+    private static boolean findNumberWithSum(int[] data, int sum) {
+        boolean found = false;
+        if (data == null)
+            return found;
+        int num1 = 0;
+        int num2 = 0;
+        int start = 0;
+        int end = data.length - 1;
+        while (start < end) {
+            int curSum = data[start] + data[end];
+            if (curSum == sum) {
+                num1 = data[start];
+                num2 = data[end];
+                found = true;
+                break;
+            } else if (curSum > sum)
+                end--;
+            else
+                start++;
+        }
+        System.out.println(num1);
+        System.out.println(num2);
+
+        return found;
+    }
 
 }

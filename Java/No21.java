@@ -1,48 +1,51 @@
 import java.util.Stack;
 
+/**
+ * å®šä¹‰æ ˆçš„æ•°æ®ç»“æ„ï¼Œè¯·åœ¨è¯¥ç±»å‹ä¸­å®ç°ä¸€ä¸ªèƒ½å¤Ÿå¾—åˆ°
+ * æ ˆçš„æœ€å°å…ƒç´ çš„minå‡½æ•°ã€‚
+ * åœ¨è¯¥æ ˆä¸­ï¼Œè°ƒç”¨minã€pushä»¥åŠpopçš„æ—¶é—´å¤æ‚åº¦éƒ½æ˜¯O(1)ã€‚
+ */
 
 public class No21 {
 
-	/**
-	 * ¶¨ÒåÕ»µÄÊı¾İ½á¹¹£¬ÇëÔÚ¸ÃÀàĞÍÖĞÊµÏÖÒ»¸öÄÜ¹»µÃµ½
-	 * Õ»µÄ×îĞ¡ÔªËØµÄminº¯Êı¡£
-	 * ÔÚ¸ÃÕ»ÖĞ£¬µ÷ÓÃmin¡¢pushÒÔ¼°popµÄÊ±¼ä¸´ÔÓ¶È¶¼ÊÇO(1)¡£
-	 */
-	public static void main(String[] args) {
-		MyStack a=new MyStack();
-		System.out.println(a.min());
-		a.push(10);
-		a.push(11);
-		System.out.println(a.min());
-	}
+    public static void main(String[] args) {
+        MyStack a = new MyStack();
+        System.out.println(a.min());
+        a.push(10);
+        a.push(11);
+        System.out.println(a.min());
+    }
 
 }
-class MyStack{
-	private Stack<Integer> stack1,stackHelp;
 
-	public MyStack() {
-		stack1=new Stack<Integer>();
-		stackHelp=new Stack<Integer>();
-	}
-	public void push(int num){
-		stack1.push(num);
-		if(stackHelp.size()==0||num<stackHelp.peek()){
-			stackHelp.push(num);
-		}else{
-			stackHelp.push(stackHelp.peek());
-		}
-	}
-	
-	public void pop() {
-		stack1.pop();
-		stackHelp.pop();
-		
-	}
-	public Integer min(){
-		if (stackHelp.size()==0) {
-			return null;
-		}
-		return stackHelp.peek();
-	}
-	
+class MyStack {
+    private Stack<Integer> stack1, stackHelp;
+
+    public MyStack() {
+        stack1 = new Stack<Integer>();
+        stackHelp = new Stack<Integer>();
+    }
+
+    public void push(int num) {
+        stack1.push(num);
+        if (stackHelp.size() == 0 || num < stackHelp.peek()) {
+            stackHelp.push(num);
+        } else {
+            stackHelp.push(stackHelp.peek());
+        }
+    }
+
+    public void pop() {
+        stack1.pop();
+        stackHelp.pop();
+
+    }
+
+    public Integer min() {
+        if (stackHelp.size() == 0) {
+            return null;
+        }
+        return stackHelp.peek();
+    }
+
 }
