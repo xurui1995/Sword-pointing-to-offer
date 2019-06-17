@@ -1,0 +1,1 @@
+data class Node(var data: String? = null, var next: Node? = null)
