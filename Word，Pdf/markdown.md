@@ -439,3 +439,525 @@ public class No10 {
     }
 }
 ```
+> 11.实现函数double Power(double base,int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。
+```
+public class No11 {
+
+    public static void main(String[] args) {
+        System.out.println(Power(2.0, 3));
+    }
+
+    public static double Power(double base, int exponent) {
+        if (exponent == 0)
+            return 1;
+        if (exponent == 1)
+            return base;
+
+        double result = Power(base, exponent >> 1);
+        result *= result;
+        if ((exponent & 0x1) == 1) {
+            result *= base;
+        }
+        return result;
+    }
+}
+```
+> 12 输入数字n，按顺序打印出从1最大的n位十进制数。比如输入3，则打印出1、2、3一直到最大的3位数即999。
+```
+public class No12 {
+
+    public static void main(String[] args) {
+        printNum(3);
+    }
+
+    private static void printNum(int n) {
+        if (n < 0)
+            return;
+        int[] array = new int[n];
+        printArray(array, 0);
+    }
+
+    private static void printArray(int[] array, int n) {
+
+        if (n != array.length) {
+            for (int i = 0; i < 10; i++) {
+                array[n] = i;
+                printArray(array, n + 1);
+            }
+        } else {
+            boolean flag = false;
+            for (int j = 0; j < array.length; j++) {
+                if (array[j] != 0) {
+                    flag = true;
+                }
+                if (flag) {
+                    System.out.print(array[j]);
+                }
+            }
+            // 去掉空白行
+            if (flag) {
+                System.out.println();
+            }
+        }
+    }
+}
+``` 
+> 13.给定单向链表的头指针和一个结点指针， 定义一个函数在O（1）时间删除该节点
+```
+public class No13 {
+
+    public static void main(String[] args) {
+        Node a = new Node("A");
+        Node b = new Node("B");
+        Node c = new Node("C");
+        Node d = new Node("D");
+        a.setNext(b);
+        b.setNext(c);
+        c.setNext(d);
+        delete(a, d);
+        Node temp = a;
+        while (temp != null) {
+            System.out.println(temp.getData());
+            temp = temp.next;
+        }
+    }
+
+    private static void delete(Node head, Node c) {
+        // 如果是尾节点,只能遍历删除
+        if (c.next == null) {
+            while (head.next != c) {
+                head = head.next;
+            }
+            head.next = null;
+        } else if (head == c) {
+            head = null;
+        } else {
+            c.setData(c.getNext().getData());
+            c.setNext(c.getNext().getNext());
+        }
+
+    }
+}
+```
+> 14.输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。
+```
+public class No14 {
+
+    public static void main(String[] args) {
+        int[] array = {3, 7, 4, 8, 23, 56, 77, 89, 46, 11, 66, 77};
+        mysort(array);
+        for (int a : array) {
+            System.out.println(" " + a);
+        }
+    }
+
+    private static void mysort(int[] array) {
+        if (array == null) {
+            return;
+        }
+        int left = 0;
+        int right = array.length - 1;
+        while (left < right) {
+            while (left < right && !isEven(array[left])) {
+                left++;
+            }
+            while (left < right && isEven(array[right])) {
+                right--;
+            }
+            if (left < right) {
+                int temp = array[right];
+                array[right] = array[left];
+                array[left] = temp;
+            }
+            if (left >= right) {
+                break;
+            }
+        }
+    }
+
+    private static boolean isEven(int i) {
+        return (i & 0x1) == 0;
+    }
+
+}
+```
+> 15.输入一个链表，输出该链表中倒数第K个结点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾结点是倒数第1个结点。例如一个链表有6个结点，从头结点开始它们的值依次是1,2,3,4,5,6。这个链表的倒数第3个结点是值为4的结点。（注意代码鲁棒性，考虑输入空指针，链表结点总数少于k，输入的k参数为0）
+```
+public class No15 {
+
+    public static void main(String[] args) {
+        Node a = new Node("1");
+        Node b = new Node("2");
+        Node c = new Node("3");
+        Node d = new Node("4");
+        Node e = new Node("5");
+        Node f = new Node("6");
+        a.setNext(b);
+        b.setNext(c);
+        c.setNext(d);
+        d.setNext(e);
+        e.setNext(f);
+
+        System.out.print(FindDataFromTail(a, 5));
+    }
+
+    private static String FindDataFromTail(Node a, int k) {
+
+        if (a == null)
+            return null;
+        if (k == 0) {
+            System.out.println("k应该从1开始");
+            return null;
+        }
+        Node node1 = a;
+        Node node2 = null;
+        for (int i = 0; i < k - 1; i++) {
+            if (node1.getNext() == null) {
+                System.out.println("k不应该大于链表长度");
+                return null;
+            }
+            node1 = node1.getNext();
+        }
+        node2 = a;
+
+        while (node1.getNext() != null) {
+            node1 = node1.getNext();
+            node2 = node2.getNext();
+        }
+        return node2.getData();
+
+    }
+}
+```
+> 15_2.求链表的中间结点。如果链表中结点总数为奇数，返回中间结点；如果结点总数为偶数，返回中间两个结点的任意一个
+```
+public class No15_2 {
+    public static void main(String[] args) {
+        Node a = new Node("1");
+        Node b = new Node("2");
+        Node c = new Node("3");
+        Node d = new Node("4");
+        Node e = new Node("5");
+        Node f = new Node("6");
+        Node g = new Node("7");
+
+        a.setNext(b);
+        b.setNext(c);
+        c.setNext(d);
+        d.setNext(e);
+        e.setNext(f);
+        f.setNext(g);
+        Node mid = getMid(a);
+        System.out.println(mid.getData());
+    }
+
+    private static Node getMid(Node a) {
+
+        if (a == null) {
+            return null;
+        }
+        Node slow = a;
+        Node fast = a;
+        while (fast.getNext() != null && fast.getNext().getNext() != null) {
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+        }
+
+        return slow;
+    }
+
+}
+``` 
+> 16.同第5题
+
+> 17.输入两个递增排序的链表，合并这两个链表并使新链表中结点仍然是按照递增排序的。例如输入1->3->5->7和2->4->6->8，则合并之后的升序链表应该是1->2->3->4->5->6->7->8 。
+```
+
+public class No17 {
+
+    public static void main(String[] args) {
+        Node node1 = new Node(1);
+        Node node2 = new Node(3);
+        Node node3 = new Node(5);
+        Node node4 = new Node(7);
+        node1.setNext(node2);
+        node2.setNext(node3);
+        node3.setNext(node4);
+        Node node5 = new Node(2);
+        Node node6 = new Node(4);
+        Node node7 = new Node(6);
+
+        node5.setNext(node6);
+        node6.setNext(node7);
+        Node head = merge(node1, node5);
+        while (head != null) {
+            System.out.print(head.getData() + " ");
+            head = head.getNext();
+        }
+
+    }
+
+    private static Node merge(Node a, Node b) {
+        if (a == null && b == null)
+            return null;
+        if (a == null)
+            return b;
+        if (b == null)
+            return a;
+
+        Node head = a.getData() > b.getData() ? b : a;
+        Node index1 = head.getNext();
+        Node index2 = head == a ? b : a;
+
+        while (index1 != null && index2 != null) {
+            if (index1.getData() < index2.getData()) {
+                head.setNext(index1);
+                index1 = index1.getNext();
+            } else {
+                head.setNext(index2);
+                index2 = index2.getNext();
+            }
+            head = head.getNext();
+        }
+
+        if (index1 == null) {
+            while (index2 != null) {
+                head.setNext(index2);
+                index2 = index2.getNext();
+                head = head.getNext();
+            }
+        } else {
+            while (index1 != null) {
+                head.setNext(index1);
+                index1 = index1.getNext();
+                head = head.getNext();
+            }
+        }
+        return a.getData() > b.getData() ? b : a;
+    }
+}
+```
+> 18.输入两颗二叉树A和B，判断B是不是A的子结构
+```
+public class No18 {
+
+    public static void main(String[] args) {
+
+        BinaryTreeNode node1 = new BinaryTreeNode(8);
+        BinaryTreeNode node2 = new BinaryTreeNode(8);
+        BinaryTreeNode node3 = new BinaryTreeNode(7);
+        BinaryTreeNode node4 = new BinaryTreeNode(9);
+        BinaryTreeNode node5 = new BinaryTreeNode(2);
+        BinaryTreeNode node6 = new BinaryTreeNode(4);
+        BinaryTreeNode node7 = new BinaryTreeNode(7);
+        node1.setLchildNode(node2);
+        node1.setRchildNode(node3);
+        node2.setLchildNode(node4);
+        node2.setRchildNode(node5);
+        node5.setLchildNode(node6);
+        node5.setRchildNode(node7);
+
+        BinaryTreeNode a = new BinaryTreeNode(8);
+        BinaryTreeNode b = new BinaryTreeNode(9);
+        BinaryTreeNode c = new BinaryTreeNode(2);
+        a.setLchildNode(b);
+        a.setRchildNode(c);
+        System.out.println(hasSubTree(node1, a));
+    }
+
+    private static boolean hasSubTree(BinaryTreeNode root1, BinaryTreeNode root2) {
+        boolean result = false;
+        if (root1 != null && root2 != null) {
+            if (root1.getData() == root2.getData()) {
+                result = doseTree1HaveTree2(root1, root2);
+                if (!result) {
+                    result = hasSubTree(root1.getLchildNode(), root2);
+                }
+                if (!result)
+                    result = hasSubTree(root1.getRchildNode(), root2);
+            }
+        }
+        return result;
+
+    }
+
+    private static boolean doseTree1HaveTree2(BinaryTreeNode root1,
+                                              BinaryTreeNode root2) {
+        if (root2 == null)
+            return true;
+        if (root1 == null)
+            return false;
+        if (root1.getData() != root2.getData()) {
+            return false;
+        }
+
+        return doseTree1HaveTree2(root1.getLchildNode(), root2.getLchildNode())
+                && doseTree1HaveTree2(root1.getRchildNode(), root2.getRchildNode());
+    }
+
+}
+```
+> 19.请完成一个函数，输入一个二叉树，该函数输出它的镜像
+```
+public class No19 {
+    public static void main(String[] args) {
+        BinaryTreeNode node1 = new BinaryTreeNode(8);
+        BinaryTreeNode node2 = new BinaryTreeNode(6);
+        BinaryTreeNode node3 = new BinaryTreeNode(10);
+        BinaryTreeNode node4 = new BinaryTreeNode(5);
+        BinaryTreeNode node5 = new BinaryTreeNode(7);
+        BinaryTreeNode node6 = new BinaryTreeNode(9);
+        BinaryTreeNode node7 = new BinaryTreeNode(11);
+        node1.setLchildNode(node2);
+        node1.setRchildNode(node3);
+        node2.setLchildNode(node4);
+        node2.setRchildNode(node5);
+        node3.setLchildNode(node6);
+        node3.setRchildNode(node7);
+        mirror(node1);
+        print(node1);
+    }
+
+    private static void print(BinaryTreeNode root) {
+        if (root != null) {
+            System.out.println(root.getData());
+            print(root.getLchildNode());
+            print(root.getRchildNode());
+        }
+    }
+
+    private static void mirror(BinaryTreeNode root) {
+        if (root == null) {
+            return;
+        }
+        if (root.getLchildNode() == null && root.getRchildNode() == null) {
+            return;
+        }
+        BinaryTreeNode temp = root.getLchildNode();
+        root.setLchildNode(root.getRchildNode());
+        root.setRchildNode(temp);
+        mirror(root.getLchildNode());
+        mirror(root.getRchildNode());
+    }
+
+}
+```
+> 20. 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字
+```
+public class No20 {
+
+
+    public static void main(String[] args) {
+        int[][] a = create(5, 5);
+        print(a);
+        clockWisePrint(a, 0, 4);
+    }
+
+    private static void clockWisePrint(int[][] a, int i, int j) {
+        if (j < i)
+            return;
+        if (j == i) {
+            System.out.print(a[i][j] + " ");
+            return;
+        }
+        int y = i;
+        while (y <= j) {
+            System.out.print(a[i][y] + " ");
+            y++;
+        }
+        y = i + 1;
+        while (y <= j) {
+            System.out.print(a[y][j] + " ");
+            y++;
+        }
+        y = j - 1;
+        while (y >= i) {
+            System.out.print(a[j][y] + " ");
+            y--;
+        }
+
+        y = j - 1;
+        while (y >= i + 1) {
+            System.out.print(a[y][i] + " ");
+            y--;
+        }
+
+
+        clockWisePrint(a, i + 1, j - 1);
+
+    }
+
+    private static void print(int[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                System.out.print(a[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] create(int row, int line) {
+        int[][] a = new int[row][line];
+        int num = 1;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < line; j++) {
+                a[i][j] = num++;
+            }
+        }
+        return a;
+    }
+
+}
+```
+
+> 21.定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的min函数。在该栈中，调用min、push以及pop的时间复杂度都是O(1)。
+```
+import java.util.Stack;
+
+public class No21 {
+
+    public static void main(String[] args) {
+        MyStack a = new MyStack();
+        System.out.println(a.min());
+        a.push(10);
+        a.push(11);
+        System.out.println(a.min());
+    }
+
+}
+
+class MyStack {
+    private Stack<Integer> stack1, stackHelp;
+
+    public MyStack() {
+        stack1 = new Stack<Integer>();
+        stackHelp = new Stack<Integer>();
+    }
+
+    public void push(int num) {
+        stack1.push(num);
+        if (stackHelp.size() == 0 || num < stackHelp.peek()) {
+            stackHelp.push(num);
+        } else {
+            stackHelp.push(stackHelp.peek());
+        }
+    }
+
+    public void pop() {
+        stack1.pop();
+        stackHelp.pop();
+
+    }
+
+    public Integer min() {
+        if (stackHelp.size() == 0) {
+            return null;
+        }
+        return stackHelp.peek();
+    }
+
+}
+```
+
+
+
