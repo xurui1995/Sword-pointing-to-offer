@@ -1230,3 +1230,521 @@ class ComplexListNode {
 ```
 > 27.输入一颗二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
 
+> 28.输入一个字符串，打印出该字符串中字符的所有排列。例如输入字符串abc， 则打印出由字符串a、b、c所能排列出来的所有字符串abc、acb、bac、bca、cab和cba
+```
+public class No28 {
+
+    public static void main(String[] args) {
+        myPrint("abc");
+    }
+
+    private static void myPrint(String str) {
+        if (str == null)
+            return;
+        char[] chs = str.toCharArray();
+        myPrint(chs, 0);
+    }
+
+    private static void myPrint(char[] str, int i) {
+        if (i >= str.length)
+            return;
+        if (i == str.length - 1) {
+            System.out.println(String.valueOf(str));
+        } else {
+            for (int j = i; j < str.length; j++) {
+                char temp = str[j];
+                str[j] = str[i];
+                str[i] = temp;
+
+                myPrint(str, i + 1);
+
+                temp = str[j];
+                str[j] = str[i];
+                str[i] = temp;
+            }
+        }
+    }
+
+}
+```
+> 29.数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2},由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。
+```
+public class No29 {
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 2, 2, 2, 5, 4, 2};
+        System.out.println(findNum(arr));
+    }
+
+    private static Integer findNum(int[] arr) {
+        if (arr == null)
+            return null;
+
+        int result = arr[0];
+        int count = 1;
+
+        for (int i = 1; i < arr.length; i++) {
+            if (count == 0) {
+                result = arr[i];
+                count = 1;
+            } else if (arr[i] == result) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+        return result;
+    }
+}
+```
+> 30. 题目：输入n个整数，输出其中最小的k个。例如输入1，2，3，4，5，6，7和8这8个数字，则最小的4个数字为1，2，3和4。
+> 31. 输入一个整型数组，数组里有正数，也有负数。数组中一个或连续的多个整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为O(n）
+```
+public class No31 {
+
+    public static void main(String[] args) {
+        int[] arr = {1, -2, 3, 10, -4, 7, 2, -5};
+        System.out.println(maxSub(arr));
+    }
+
+    private static int maxSub(int[] arr) {
+        int max = 0;
+        int n = arr.length;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+            if (sum > max)
+                max = sum;
+            else if (sum < 0)
+                sum = 0;
+        }
+        return max;
+
+    }
+
+}
+```
+
+> 32. 输入一个整数n，求从1到n这n个整数的十进制表示中1出现的次数。例如输入12，从1到12这些整数中包含1的数字有1,10,11和12,1一共出现5次。
+```
+public class No32 {
+
+    public static void main(String[] args) {
+        System.out.println(countOne(115));
+
+    }
+
+    private static long countOne(int n) {
+        long count = 0;
+        long i = 1;
+        long current = 0, after = 0, before = 0;
+        while ((n / i) != 0) {
+            current = (n / i) % 10;
+            before = n / (i * 10);
+            after = n - (n / i) * i;
+
+            if (current > 1)
+                count = count + (before + 1) * i;
+            else if (current == 0)
+                count = count + before * i;
+            else if (current == 1)
+                count = count + before * i + after + 1;
+            i = i * 10;
+        }
+        return count;
+    }
+
+}
+```
+> 33. --
+> 34. 我们把只包含因子2,3和5的数称作丑数。求按从小到大的顺序的第1500个丑数。例如6、8都是丑数，但14不是，因为它包含因子7.习惯上我们把1当做第一个丑数。
+```
+public class No34 {
+
+    public static void main(String[] args) {
+
+        System.out.println(getUgly(20));
+
+    }
+
+    private static int getUgly(int n) {
+        if (n < 0)
+            return 0;
+        int[] uglyArray = new int[n];
+        uglyArray[0] = 1;
+        int multiply2 = 0;
+        int multiply3 = 0;
+        int multiply5 = 0;
+        for (int i = 1; i < n; i++) {
+            int min = getMin(uglyArray[multiply2] * 2, uglyArray[multiply3] * 3, uglyArray[multiply5] * 5);
+            uglyArray[i] = min;
+            System.out.println(uglyArray[i]);
+            while (uglyArray[multiply2] * 2 == uglyArray[i])
+                multiply2++;
+            while (uglyArray[multiply3] * 3 == uglyArray[i])
+                multiply3++;
+            while (uglyArray[multiply5] * 5 == uglyArray[i])
+                multiply5++;
+        }
+        return uglyArray[n - 1];
+    }
+
+    private static int getMin(int i, int j, int k) {
+        int min = (i < j) ? i : j;
+        return (min < k) ? min : k;
+    }
+
+}
+```
+> 35. 在字符串中找出第一个只出现一次的字符。如输入"abaccdeff"，则输出'b'
+```
+import java.util.LinkedHashMap;
+
+public class No35 {
+
+    public static void main(String[] args) {
+        System.out.println(firstOnceNumber("abaccdeff"));
+
+    }
+
+    private static Character firstOnceNumber(String str) {
+        if (str == null)
+            return null;
+        char[] strChar = str.toCharArray();
+        LinkedHashMap<Character, Integer> hash = new LinkedHashMap<Character, Integer>();
+        for (char item : strChar) {
+            if (hash.containsKey(item))
+                hash.put(item, hash.get(item) + 1);
+            else
+                hash.put(item, 1);
+        }
+        for (char key : hash.keySet()) {
+            if (hash.get(key) == 1) {
+                return key;
+            }
+        }
+        return null;
+
+    }
+
+}
+```
+> 36. 
+> 37. 输入两个单向链表，找出它们的第一个公共结点。
+```
+public class No37 {
+
+    public static void main(String[] args) {
+
+        ListNode head1 = new ListNode();
+        ListNode second1 = new ListNode();
+        ListNode third1 = new ListNode();
+        ListNode forth1 = new ListNode();
+        ListNode fifth1 = new ListNode();
+        ListNode head2 = new ListNode();
+        ListNode second2 = new ListNode();
+        ListNode third2 = new ListNode();
+        ListNode forth2 = new ListNode();
+        head1.nextNode = second1;
+        second1.nextNode = third1;
+        third1.nextNode = forth1;
+        forth1.nextNode = fifth1;
+        head2.nextNode = second2;
+        second2.nextNode = forth1;
+        third2.nextNode = fifth1;
+        head1.data = 1;
+        second1.data = 2;
+        third1.data = 3;
+        forth1.data = 6;
+        fifth1.data = 7;
+        head2.data = 4;
+        second2.data = 5;
+        third2.data = 6;
+        forth2.data = 7;
+        System.out.println(findFirstCommonNode(head1, head2).data);
+
+    }
+
+    public static ListNode findFirstCommonNode(ListNode head1, ListNode head2) {
+        int len1 = getListLength(head1);
+        int len2 = getListLength(head2);
+        ListNode longListNode = null;
+        ListNode shortListNode = null;
+        int dif = 0;
+        if (len1 > len2) {
+            longListNode = head1;
+            shortListNode = head2;
+            dif = len1 - len2;
+        } else {
+            longListNode = head2;
+            shortListNode = head1;
+            dif = len2 - len1;
+        }
+        for (int i = 0; i < dif; i++) {
+            longListNode = longListNode.nextNode;
+        }
+        while (longListNode != null && shortListNode != null
+                && longListNode != shortListNode) {
+            longListNode = longListNode.nextNode;
+            shortListNode = shortListNode.nextNode;
+        }
+        return longListNode;
+    }
+
+    private static int getListLength(ListNode head1) {
+        int result = 0;
+        if (head1 == null)
+            return result;
+        ListNode point = head1;
+        while (point != null) {
+            point = point.nextNode;
+            result++;
+        }
+        return result;
+    }
+}
+
+class ListNode {
+    int data;
+    ListNode nextNode;
+}
+```
+
+38. 统计一个数字在排序数组中出现的次数。例如输入排序数组{1,2,3,3,3,3,4,5}和数字3，由于3在这个数组中出现了4次，因此输出4。
+```
+public class No38 {
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 3, 3, 3, 4, 5};
+        System.out.println(getNumberOfK(array, 3));
+    }
+
+    private static int getNumberOfK(int[] array, int k) {
+        int num = 0;
+        if (array != null) {
+            int first = getFirstK(array, k, 0, array.length - 1);
+            int last = getLastK(array, k, 0, array.length - 1);
+            //System.out.println(last);
+
+            if (first > -1 && last > -1)
+                num = last - first + 1;
+        }
+        return num;
+    }
+
+    private static int getLastK(int[] array, int k, int start, int end) {
+
+        if (start > end)
+            return -1;
+
+        int mid = (start + end) / 2;
+
+        int midData = array[mid];
+        if (midData == k) {
+            if ((mid < array.length - 1 && array[mid + 1] != k) || mid == array.length - 1) {
+
+                return mid;
+            } else {
+                start = mid + 1;
+            }
+        } else if (midData < k)
+            start = mid + 1;
+        else
+            end = mid - 1;
+        return getLastK(array, k, start, end);
+    }
+
+    private static int getFirstK(int[] array, int k, int start, int end) {
+        if (start > end)
+            return -1;
+        int mid = (start + end) / 2;
+        int midData = array[mid];
+        if (midData == k) {
+            if ((mid > 0 && array[mid - 1] != k) || mid == 0) {
+                return mid;
+            } else {
+                end = mid - 1;
+            }
+        } else if (midData > k)
+            end = mid - 1;
+        else
+            start = mid + 1;
+
+        return getFirstK(array, k, start, end);
+    }
+
+}
+```
+> 39. 输入一颗二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
+```
+public class No39 {
+
+    public int treeDepth(BinaryTreeNode root) {
+
+        if (root == null) return 0;
+
+        int left = treeDepth(root.getLchildNode());
+
+        int right = treeDepth(root.getRchildNode());
+
+        return (left > right) ? left + 1 : right + 1;
+
+    }
+
+}
+```
+> 40. 一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度O(1)
+```
+public class No40 {
+
+    public static void main(String[] args) {
+        int[] array = {2, 4, 3, 6, 3, 2, 5, 5};
+        findNumsAppearOnce(array);
+    }
+
+    private static void findNumsAppearOnce(int[] array) {
+        if (array == null)
+            return;
+        int num = 0;
+        for (int i : array) {
+            num ^= i;
+        }
+        int index = findFirstBitIs1(num);
+        int number1 = 0;
+        int number2 = 0;
+        for (int i : array) {
+            if (isBit1(i, index))
+                number1 ^= i;
+            else
+                number2 ^= i;
+        }
+        System.out.println(number1);
+        System.out.println(number2);
+    }
+
+    private static boolean isBit1(int number, int index) {
+        number = number >> index;
+        return (number & 1) == 0;
+    }
+
+    private static int findFirstBitIs1(int num) {
+        int index = 0;
+        while ((num & 1) == 0) {
+            num = num >> 1;
+            index++;
+        }
+        return index;
+    }
+
+}
+```
+
+> 41. 输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，输出任意一对即可。
+```
+public class No41 {
+
+    public static void main(String[] args) {
+        int[] data = {1, 2, 4, 7, 11, 15};
+        System.out.println(findNumberWithSum(data, 15));
+    }
+
+    private static boolean findNumberWithSum(int[] data, int sum) {
+        boolean found = false;
+        if (data == null)
+            return found;
+        int num1 = 0;
+        int num2 = 0;
+        int start = 0;
+        int end = data.length - 1;
+        while (start < end) {
+            int curSum = data[start] + data[end];
+            if (curSum == sum) {
+                num1 = data[start];
+                num2 = data[end];
+                found = true;
+                break;
+            } else if (curSum > sum)
+                end--;
+            else
+                start++;
+        }
+        System.out.println(num1);
+        System.out.println(num2);
+
+        return found;
+    }
+
+}
+```
+> 42. 输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am student."，则输出"student. a am I"。
+```
+public class No42 {
+    
+    public static void main(String[] args) {
+        String string = "I am a student.";
+
+        reverseSentence(string);
+    }
+
+    private static void reverseSentence(String str) {
+        if (str == null)
+            return;
+        char[] arr = str.toCharArray();
+
+        reverse(arr, 0, arr.length - 1);
+        int start = 0;
+        int end = 0;
+        for (char i = 0; i < arr.length; i++) {
+            if (arr[i] == ' ') {
+                reverse(arr, start, end);
+                end++;
+                start = end;
+            } else if (i == arr.length) {
+                end++;
+                reverse(arr, start, end);
+            } else {
+                end++;
+            }
+        }
+
+        for (char c : arr) {
+            System.out.print(c);
+        }
+    }
+
+    private static void reverse(char[] arr, int start, int end) {
+        for (int i = start, j = end; i <= j; i++, j--) {
+            char temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+}
+```
+> 43. 
+> 44.
+> 45. 0~n-1这n个数字排列成一个圆圈，从数字0开始每次从这个圆圈中删除第m个数字。求出这个圆圈里剩下的最后一个数字。
+```
+public class No45 {
+
+    public static void main(String[] args) {
+        System.out.println(lastRemaining(6, 3));
+    }
+
+    public static int lastRemaining(int n, int m) {
+        if (n < 1 || m < 1)
+            return -1;
+        int last = 0;
+        for (int i = 2; i <= n; i++) {
+            last = (last + m) % i;
+        }
+        return last;
+    }
+
+}
+```
+> 47. 写一个函数，求两个整数之和，要求函数体内部不能使用"+"、"-"、"*"、"\"。
+
+
+
