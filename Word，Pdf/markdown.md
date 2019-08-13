@@ -958,6 +958,276 @@ class MyStack {
 
 }
 ```
+> 22. 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1、2、3、4、5是某栈的压栈序列，序列4、5、3、2、1是该压栈序列对应的一个弹出序列,但4、3、5、1、2就不可能是该压栈序列的弹出序列。
+```
+import java.util.Stack;
 
+public class No22 {
+
+    public static void main(String[] args) {
+        Integer[] pushOrder = {1, 2, 3, 4, 5};
+        Integer[] popOrder = {4, 5, 3, 1, 2};
+        System.out.println(isRight(pushOrder, popOrder));
+    }
+
+    private static boolean isRight(Integer[] pushOrder, Integer[] popOrder) {
+
+        Stack<Integer> stack = new Stack<Integer>();
+        int pushIndex = 0;
+        for (int i = 0; i < popOrder.length; i++) {
+            if (!stack.isEmpty() && stack.peek() == popOrder[i])
+                stack.pop();
+            else {
+                while (pushIndex <= pushOrder.length - 1 && pushOrder[pushIndex] != popOrder[i]) {
+                    stack.push(pushOrder[pushIndex++]);
+                }
+                if (pushIndex > pushOrder.length - 1) {
+                    return false;
+                } else {
+                    pushIndex++;
+                }
+            }
+        }
+        return true;
+    }
+
+}
+```
+
+> 23.从上往下打印出二叉树的每个结点，同一层的结点按照从左到右的顺序打印
+```
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class No23 {
+
+    public static void main(String[] args) {
+        BinaryTreeNode node1 = new BinaryTreeNode(8);
+        BinaryTreeNode node2 = new BinaryTreeNode(6);
+        BinaryTreeNode node3 = new BinaryTreeNode(10);
+        BinaryTreeNode node4 = new BinaryTreeNode(5);
+        BinaryTreeNode node5 = new BinaryTreeNode(7);
+        BinaryTreeNode node6 = new BinaryTreeNode(9);
+        BinaryTreeNode node7 = new BinaryTreeNode(11);
+        node1.setLchildNode(node2);
+        node1.setRchildNode(node3);
+        node2.setLchildNode(node4);
+        node2.setRchildNode(node5);
+        node3.setLchildNode(node6);
+        node3.setRchildNode(node7);
+
+        printFromTopToBottom(node1);
+    }
+
+    private static void printFromTopToBottom(BinaryTreeNode root) {
+        if (root == null)
+            return;
+        Queue<BinaryTreeNode> queue = new LinkedList<BinaryTreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            BinaryTreeNode node = queue.poll();
+            System.out.println(node.getData());
+            if (node.getLchildNode() != null) {
+                queue.add(node.getLchildNode());
+            }
+            if (node.getRchildNode() != null) {
+                queue.add(node.getRchildNode());
+            }
+        }
+    }
+
+}
+```
+
+> 24.输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则返回true，否则返回false。假设输入的数组的任意两个数字都互不相同。
+```
+public class No24 {
+
+    public static void main(String[] args) {
+        int[] array = {5, 7, 6, 9, 11, 10, 8};
+        // int[] array={7,4,6,5};
+
+        boolean b = verfiySequenceOfBST(array, 0, 6);
+        System.out.println(b);
+    }
+
+    private static boolean verfiySequenceOfBST(int[] array, int start, int end) {
+
+        if (array == null || start > end || start < 0 || end < 0)
+            return false;
+
+        if (start == end)
+            return true;
+
+        int root = array[end];
+
+        int i = start;
+        for (; i <= end; i++) {
+            if (array[i] > root)
+                break;
+        }
+
+        int j = i;
+        for (; j <= end; j++) {
+            if (array[j] < root)
+                return false;
+        }
+
+        boolean left = true;
+        if (i > start) {
+            left = verfiySequenceOfBST(array, start, i - 1);
+        }
+
+        boolean right = true;
+        if (i < end) {
+
+            right = verfiySequenceOfBST(array, i, end - 1);
+        }
+        return (left && right);
+    }
+
+}
+```
+
+> 25. 输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
+```
+import java.util.Stack;
+
+public class No25 {
+
+    public static void main(String[] args) {
+
+        BinaryTreeNode root = new BinaryTreeNode(10);
+        BinaryTreeNode node1 = new BinaryTreeNode(5);
+        BinaryTreeNode node2 = new BinaryTreeNode(4);
+        BinaryTreeNode node3 = new BinaryTreeNode(7);
+        BinaryTreeNode node4 = new BinaryTreeNode(12);
+        root.setLchildNode(node1);
+        root.setRchildNode(node4);
+        node1.setLchildNode(node2);
+        node1.setRchildNode(node3);
+        findPath(root, 22);
+    }
+
+    private static void findPath(BinaryTreeNode root, int i) {
+        if (root == null)
+            return;
+        Stack<Integer> stack = new Stack<Integer>();
+        int currentSum = 0;
+        findPath(root, i, stack, currentSum);
+    }
+
+    private static void findPath(BinaryTreeNode root, int i,
+                                 Stack<Integer> stack, int currentSum) {
+        currentSum += root.getData();
+        stack.push(root.getData());
+        if (root.getLchildNode() == null && root.getRchildNode() == null) {
+            if (currentSum == i) {
+                System.out.println("找到路径");
+                for (int path : stack) {
+                    System.out.println(path + " ");
+                }
+            }
+        }
+        if (root.getLchildNode() != null) {
+            findPath(root.getLchildNode(), i, stack, currentSum);
+        }
+        if (root.getRchildNode() != null) {
+            findPath(root.getRchildNode(), i, stack, currentSum);
+        }
+
+        stack.pop();
+    }
+
+}
+```
+
+> 26.请实现函数ComplexListNode* Clone(ComplexListNode* pHead)，复制一个复杂链表。在复杂链表中，每个结点除了有一个m_pNext指针指向下一个结点外，还有一个m_pSibling指向链表中的任意结点或者NULL。
+```
+public class No26 {
+
+    public static void main(String[] args) {
+        ComplexListNode node1 = new ComplexListNode(1);
+        ComplexListNode node2 = new ComplexListNode(2);
+        ComplexListNode node3 = new ComplexListNode(3);
+        ComplexListNode node4 = new ComplexListNode(4);
+        ComplexListNode node5 = new ComplexListNode(5);
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        node1.sibling = node3;
+        node2.sibling = node5;
+        node4.sibling = node2;
+        ComplexListNode result = clone(node1);
+        while (result != null) {
+            System.out.println(result.data);
+            result = result.next;
+        }
+    }
+
+    private static ComplexListNode clone(ComplexListNode head) {
+        cloneNodes(head);
+        copySibingNodes(head);
+        return separateNodes(head);
+    }
+
+    private static ComplexListNode separateNodes(ComplexListNode head) {
+        ComplexListNode node = head;
+        ComplexListNode cloneHead = null;
+        ComplexListNode cloneNode = null;
+        if (node != null) {
+            cloneNode = node.next;
+            cloneHead = cloneNode;
+            node.next = cloneNode.next;
+            node = node.next;
+        }
+        while (node != null) {
+            cloneNode.next = node.next;
+            cloneNode = cloneNode.next;
+            node.next = cloneNode.next;
+            node = node.next;
+        }
+        return cloneHead;
+    }
+
+    private static void copySibingNodes(ComplexListNode head) {
+        ComplexListNode node = head;
+        while (node != null) {
+            ComplexListNode cloneNode = node.next;
+
+            if (node.sibling != null) {
+                cloneNode.sibling = node.sibling.next;
+            }
+            node = cloneNode.next;
+        }
+
+    }
+
+    private static void cloneNodes(ComplexListNode head) {
+        ComplexListNode node = head;
+        while (node != null) {
+            ComplexListNode cloneNode = new ComplexListNode(node.data);
+            cloneNode.next = node.next;
+            node.next = cloneNode;
+            node = cloneNode.next;
+        }
+    }
+
+}
+
+class ComplexListNode {
+    int data;
+    ComplexListNode next;
+    ComplexListNode sibling;
+
+    public ComplexListNode(int data) {
+        super();
+        this.data = data;
+    }
+}
+
+```
+> 27.输入一颗二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建人和新的结点，只能调整树中结点指针的指向。
 
 
