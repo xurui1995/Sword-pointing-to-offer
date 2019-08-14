@@ -74,7 +74,7 @@ class Node {
 ```
 
 ####  题解
-> 2.设计一个类，我们只能生成该类的一个实例。
+> 2. 设计一个类，我们只能生成该类的一个实例。
 ```
 // 饿汉式  线程安全
 class A {
@@ -121,7 +121,7 @@ class C {
 }
 ```
 
-> 3.在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否函数该整数。
+> 3. 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否函数该整数。
 
 ```
 public class No03 {
@@ -156,7 +156,7 @@ public class No03 {
     }
 }
 ```
-> 4.请实现一个函数，把字符串中的每个空格替换成"%20"。例如输入"We are happy"，则输出"We%20are%20happy"
+> 4. 请实现一个函数，把字符串中的每个空格替换成"%20"。例如输入"We are happy"，则输出"We%20are%20happy"
 ```
 public class No04 {
 
@@ -197,7 +197,7 @@ public class No04 {
     }
 }
 ```
-> 5.输入一个链表的头节点，从尾到头打印每个节点的值
+> 5. 输入一个链表的头节点，从尾到头打印每个节点的值
 ```
 public class No05 {
 
@@ -244,7 +244,7 @@ public class No05 {
     }
 }
 ```
-> 6.根据前序遍历和中序遍历建立树 
+> 6. 根据前序遍历和中序遍历建立树 
 ```
 public class No06 {
     public static void main(String[] args) {
@@ -284,7 +284,7 @@ class BiTree {
     }
 }
 ```
-> 7.两个栈建立队列
+> 7. 两个栈建立队列
 ```
 import java.util.Stack;
 
@@ -334,7 +334,7 @@ public class No07 {
 
 }
 ```
-> 8.把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+> 8. 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
 ```
 
 public class No08 {
@@ -383,7 +383,7 @@ public class No08 {
     
 }
 ```
-> 9.写一个函数，输入n，求斐波那契数列的第n项 (一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级台阶总共有多少种跳法)
+> 9. 写一个函数，输入n，求斐波那契数列的第n项 (一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级台阶总共有多少种跳法)
 ```
 public class No09 {
 
@@ -421,7 +421,7 @@ public class No09 {
     }
 }
 ```
-> 10.请实现一个函数，输入一个整数，输出该二进制表示中1的个数。例如把9表示成二进制是1001，有2位是1。
+> 10. 请实现一个函数，输入一个整数，输出该二进制表示中1的个数。例如把9表示成二进制是1001，有2位是1。
 ```
 public class No10 {
 
@@ -439,7 +439,7 @@ public class No10 {
     }
 }
 ```
-> 11.实现函数double Power(double base,int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。
+> 11. 实现函数double Power(double base,int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。
 ```
 public class No11 {
 
@@ -462,7 +462,7 @@ public class No11 {
     }
 }
 ```
-> 12 输入数字n，按顺序打印出从1最大的n位十进制数。比如输入3，则打印出1、2、3一直到最大的3位数即999。
+> 12. 输入数字n，按顺序打印出从1最大的n位十进制数。比如输入3，则打印出1、2、3一直到最大的3位数即999。
 ```
 public class No12 {
 
@@ -502,7 +502,7 @@ public class No12 {
     }
 }
 ``` 
-> 13.给定单向链表的头指针和一个结点指针， 定义一个函数在O（1）时间删除该节点
+> 13. 给定单向链表的头指针和一个结点指针， 定义一个函数在O（1）时间删除该节点
 ```
 public class No13 {
 
@@ -539,7 +539,7 @@ public class No13 {
     }
 }
 ```
-> 14.输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。
+> 14. 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。
 ```
 public class No14 {
 
@@ -581,7 +581,7 @@ public class No14 {
 
 }
 ```
-> 15.输入一个链表，输出该链表中倒数第K个结点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾结点是倒数第1个结点。例如一个链表有6个结点，从头结点开始它们的值依次是1,2,3,4,5,6。这个链表的倒数第3个结点是值为4的结点。（注意代码鲁棒性，考虑输入空指针，链表结点总数少于k，输入的k参数为0）
+> 15. 输入一个链表，输出该链表中倒数第K个结点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾结点是倒数第1个结点。例如一个链表有6个结点，从头结点开始它们的值依次是1,2,3,4,5,6。这个链表的倒数第3个结点是值为4的结点。（注意代码鲁棒性，考虑输入空指针，链表结点总数少于k，输入的k参数为0）
 ```
 public class No15 {
 
@@ -629,7 +629,7 @@ public class No15 {
     }
 }
 ```
-> 15_2.求链表的中间结点。如果链表中结点总数为奇数，返回中间结点；如果结点总数为偶数，返回中间两个结点的任意一个
+> 15_2. 求链表的中间结点。如果链表中结点总数为奇数，返回中间结点；如果结点总数为偶数，返回中间两个结点的任意一个
 ```
 public class No15_2 {
     public static void main(String[] args) {
@@ -668,9 +668,9 @@ public class No15_2 {
 
 }
 ``` 
-> 16.同第5题
+> 16. 同第5题
 
-> 17.输入两个递增排序的链表，合并这两个链表并使新链表中结点仍然是按照递增排序的。例如输入1->3->5->7和2->4->6->8，则合并之后的升序链表应该是1->2->3->4->5->6->7->8 。
+> 17. 输入两个递增排序的链表，合并这两个链表并使新链表中结点仍然是按照递增排序的。例如输入1->3->5->7和2->4->6->8，则合并之后的升序链表应该是1->2->3->4->5->6->7->8 。
 ```
 
 public class No17 {
@@ -737,7 +737,7 @@ public class No17 {
     }
 }
 ```
-> 18.输入两颗二叉树A和B，判断B是不是A的子结构
+> 18. 输入两颗二叉树A和B，判断B是不是A的子结构
 ```
 public class No18 {
 
@@ -797,7 +797,7 @@ public class No18 {
 
 }
 ```
-> 19.请完成一个函数，输入一个二叉树，该函数输出它的镜像
+> 19. 请完成一个函数，输入一个二叉树，该函数输出它的镜像
 ```
 public class No19 {
     public static void main(String[] args) {
@@ -910,7 +910,7 @@ public class No20 {
 }
 ```
 
-> 21.定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的min函数。在该栈中，调用min、push以及pop的时间复杂度都是O(1)。
+> 21. 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的min函数。在该栈中，调用min、push以及pop的时间复杂度都是O(1)。
 ```
 import java.util.Stack;
 
@@ -994,7 +994,7 @@ public class No22 {
 }
 ```
 
-> 23.从上往下打印出二叉树的每个结点，同一层的结点按照从左到右的顺序打印
+> 23. 从上往下打印出二叉树的每个结点，同一层的结点按照从左到右的顺序打印
 ```
 import java.util.LinkedList;
 import java.util.Queue;
@@ -1039,7 +1039,7 @@ public class No23 {
 }
 ```
 
-> 24.输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则返回true，否则返回false。假设输入的数组的任意两个数字都互不相同。
+> 24. 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则返回true，否则返回false。假设输入的数组的任意两个数字都互不相同。
 ```
 public class No24 {
 
@@ -1142,7 +1142,7 @@ public class No25 {
 }
 ```
 
-> 26.请实现函数ComplexListNode* Clone(ComplexListNode* pHead)，复制一个复杂链表。在复杂链表中，每个结点除了有一个m_pNext指针指向下一个结点外，还有一个m_pSibling指向链表中的任意结点或者NULL。
+> 26. 请实现函数ComplexListNode* Clone(ComplexListNode* pHead)，复制一个复杂链表。在复杂链表中，每个结点除了有一个m_pNext指针指向下一个结点外，还有一个m_pSibling指向链表中的任意结点或者NULL。
 ```
 public class No26 {
 
@@ -1228,9 +1228,67 @@ class ComplexListNode {
 }
 
 ```
-> 27.输入一颗二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
+> 27. 输入一颗二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
+```
+public class No27 {
 
-> 28.输入一个字符串，打印出该字符串中字符的所有排列。例如输入字符串abc， 则打印出由字符串a、b、c所能排列出来的所有字符串abc、acb、bac、bca、cab和cba
+    public static void main(String[] args) {
+        BinaryTreeNode root = new BinaryTreeNode(10);
+        BinaryTreeNode node1 = new BinaryTreeNode(6);
+        BinaryTreeNode node2 = new BinaryTreeNode(14);
+        BinaryTreeNode node3 = new BinaryTreeNode(4);
+        BinaryTreeNode node4 = new BinaryTreeNode(8);
+        BinaryTreeNode node5 = new BinaryTreeNode(12);
+        BinaryTreeNode node6 = new BinaryTreeNode(16);
+        root.setLchildNode(node1);
+        root.setRchildNode(node2);
+        node1.setLchildNode(node3);
+        node1.setRchildNode(node4);
+        node2.setLchildNode(node5);
+        node2.setRchildNode(node6);
+
+        BinaryTreeNode head = covert(root);
+
+        while (head != null) {
+            System.out.println(head.getData());
+            head = head.getRchildNode();
+        }
+    }
+
+    private static BinaryTreeNode covert(BinaryTreeNode root) {
+        BinaryTreeNode lastNodeList = null;
+        lastNodeList = convertNode(root, lastNodeList);
+        while (lastNodeList != null && lastNodeList.getLchildNode() != null) {
+            lastNodeList = lastNodeList.getLchildNode();
+        }
+        return lastNodeList;
+    }
+
+    private static BinaryTreeNode convertNode(BinaryTreeNode root,
+                                              BinaryTreeNode lastNodeList) {
+        if (root == null)
+            return null;
+        BinaryTreeNode current = root;
+        if (current.getLchildNode() != null) {
+            lastNodeList = convertNode(current.getLchildNode(), lastNodeList);
+        }
+
+        current.setLchildNode(lastNodeList);
+
+        if (lastNodeList != null) {
+            lastNodeList.setRchildNode(current);
+        }
+        lastNodeList = current;
+        if (current.getRchildNode() != null) {
+            lastNodeList = convertNode(current.getRchildNode(), lastNodeList);
+        }
+        return lastNodeList;
+    }
+
+}
+```
+
+> 28. 输入一个字符串，打印出该字符串中字符的所有排列。例如输入字符串abc， 则打印出由字符串a、b、c所能排列出来的所有字符串abc、acb、bac、bca、cab和cba
 ```
 public class No28 {
 
@@ -1267,7 +1325,7 @@ public class No28 {
 
 }
 ```
-> 29.数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2},由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。
+> 29. 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2},由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。
 ```
 public class No29 {
 
@@ -1298,6 +1356,58 @@ public class No29 {
 }
 ```
 > 30. 题目：输入n个整数，输出其中最小的k个。例如输入1，2，3，4，5，6，7和8这8个数字，则最小的4个数字为1，2，3和4。
+```
+public class TopK {
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 4, 2, 7, 8, 9, 10, 14, 16};
+        System.out.println(minK(arr, 1));
+        System.out.println(minK(arr, 2));
+        System.out.println(minK(arr, 3));
+        System.out.println(minK(arr, 4));
+        System.out.println(minK(arr, 5));
+        System.out.println(minK(arr, 6));
+    }
+
+    public static int minK(int[] arr, int k) {
+        return minK(arr, k, 0, arr.length - 1);
+    }
+
+    public static int minK(int[] arr, int k, int start, int end) {
+        int mid = partition(arr, start, end);
+        if (mid - start == k - 1) {
+            return arr[mid];
+        } else if (mid - start > k - 1) {
+            return minK(arr, k, start, mid - 1);
+        } else {
+            return minK(arr, k - 1 - (mid - start), mid + 1, end);
+        }
+    }
+
+
+    public static int partition(int[] arr, int start, int end) {
+        int key = arr[start];
+        int keyIndex = start;
+        start++;
+        for (int i = start; i <= end; i++) {
+            if (arr[i] < key) {
+                swap(arr, i, start);
+                start++;
+            }
+        }
+        swap(arr, keyIndex, start - 1);
+        return start - 1;
+    }
+
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+}
+```
 > 31. 输入一个整型数组，数组里有正数，也有负数。数组中一个或连续的多个整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为O(n）
 ```
 public class No31 {
@@ -1356,7 +1466,59 @@ public class No32 {
 
 }
 ```
-> 33. --
+> 33. 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出所有数字中最小的一个。例如输入数组{3,32,321}，则打印出这3个数字能排成的最小数字321323
+```
+public class No33 {
+
+    public static void main(String[] args) {
+        int[] array = {321, 32, 3};
+        printMin(array);
+    }
+
+    private static void printMin(int[] array) {
+        int[] clone = array.clone();
+        printMin(clone, 0, clone.length - 1);
+        for (int i : clone)
+            System.out.print(i);
+    }
+
+    private static void printMin(int[] array, int start, int end) {
+
+        if (start < end) {
+            int main_number = array[end];
+            int small_cur = start;
+            for (int j = start; j < end; j++) {
+                if (isSmall(String.valueOf(array[j]), String.valueOf(main_number))) {
+                    int temp = array[j];
+                    array[j] = array[small_cur];
+                    array[small_cur] = temp;
+                    small_cur++;
+                }
+            }
+            array[end] = array[small_cur];
+            array[small_cur] = main_number;
+            printMin(array, 0, small_cur - 1);
+            printMin(array, small_cur + 1, end);
+        }
+
+    }
+
+    public static boolean isSmall(String m, String n) {
+        String left = m + n;
+        String right = n + m;
+        boolean result = false;
+        for (int i = 0; i < left.length(); i++) {
+            if (left.charAt(i) < right.charAt(i))
+                return true;
+            else if (left.charAt(i) > right.charAt(i))
+                return false;
+        }
+
+        return result;
+    }
+
+}
+```
 > 34. 我们把只包含因子2,3和5的数称作丑数。求按从小到大的顺序的第1500个丑数。例如6、8都是丑数，但14不是，因为它包含因子7.习惯上我们把1当做第一个丑数。
 ```
 public class No34 {
@@ -1429,7 +1591,54 @@ public class No35 {
 
 }
 ```
-> 36. 
+> 36. 在数组中的两个数字如果前面一个数字大于后面的数字， 则这两个数字组成一个逆序对。 输入一个数组，求出这个数组中的逆序对的总数
+```
+public class No36 {
+
+    public static void main(String[] args) {
+        int[] arr = {7, 5, 6, 4};
+        System.out.println(getInversePairs(arr));
+
+    }
+
+    private static int getInversePairs(int[] arr) {
+        if (arr == null)
+            return 0;
+        int[] clone = arr.clone();
+        return mergeSort(arr, clone, 0, arr.length - 1);
+    }
+
+    private static int mergeSort(int[] array, int[] result, int start, int end) {
+        if (start == end) {
+            result[start] = array[start];
+            return 0;
+        }
+        int length = (end - start) / 2;
+        int left = mergeSort(result, array, start, start + length);
+        int right = mergeSort(result, array, start + length + 1, end);
+        int leftIndex = start + length;
+        int rightIndex = end;
+        int count = 0;
+        int point = rightIndex;
+        while (leftIndex >= start && rightIndex >= start + length + 1) {
+            if (array[leftIndex] > array[rightIndex]) {
+                result[point--] = array[leftIndex--];
+                count += rightIndex - start - length;
+
+            } else {
+                result[point--] = array[rightIndex--];
+            }
+        }
+        for (int i = leftIndex; i >= start; i--)
+            result[point--] = array[i];
+        for (int j = rightIndex; j >= start + length + 1; j--)
+            result[point--] = array[j];
+        return left + right + count;
+
+    }
+
+}
+```
 > 37. 输入两个单向链表，找出它们的第一个公共结点。
 ```
 public class No37 {
@@ -1722,8 +1931,88 @@ public class No42 {
 
 }
 ```
-> 43. 
-> 44.
+> 43. 把n个骰子仍在地上，所有骰子朝上一面的点数之和为s，输入n，打印出s的所有可能的值出现的概率
+```
+public class No43 {
+
+    public static void main(String[] args) {
+        printProbability(2);
+    }
+
+    private static void printProbability(int num) {
+        if (num < 1)
+            return;
+        int gMaxValue = 6;
+        int[][] probabilities = new int[2][];
+        probabilities[0] = new int[gMaxValue * num + 1];
+        probabilities[1] = new int[gMaxValue * num + 1];
+        int flag = 0;
+        for (int i = 1; i <= gMaxValue; i++) {
+            probabilities[flag][i] = 1;
+        }
+        for (int k = 2; k <= num; k++) {
+            for (int i = 0; i < k; i++) {
+                probabilities[1 - flag][i] = 0;
+            }
+            for (int i = k; i <= gMaxValue * k; i++) {
+                probabilities[1 - flag][i] = 0;
+                for (int j = 1; j <= i && j <= gMaxValue; j++)
+                    probabilities[1 - flag][i] += probabilities[flag][i - j];
+            }
+            flag = 1 - flag;
+
+        }
+        double total = Math.pow(gMaxValue, num);
+        for (int i = num; i <= gMaxValue * num; i++) {
+
+            double ratio = (double) probabilities[flag][i] / total;
+
+            System.out.print(i + " ");
+
+            System.out.println(ratio);
+
+        }
+    }
+}
+
+```
+> 44.从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2~10为数字本身，A为1，J为11，Q为12，K为13，而大、小王可以看成任意数字。
+```
+import java.util.Arrays;
+
+public class No44 {
+
+    public static void main(String[] args) {
+        int[] array = {0, 4, 6, 8, 0};
+        System.out.println(isContinuous(array));
+
+    }
+
+    private static boolean isContinuous(int[] arr) {
+
+        if (arr == null || arr.length != 5)
+            return false;
+        Arrays.sort(arr);
+        int numberZero = 0;
+        int numberGap = 0;
+        for (int i = 0; i < arr.length && arr[i] == 0; i++)
+            numberZero++;
+
+        int small = numberZero;
+        int big = small + 1;
+        while (big < arr.length) {
+            if (arr[small] == arr[big])
+                return false;
+
+            numberGap += arr[big] - arr[small] - 1;
+            small = big;
+            big++;
+        }
+        return numberGap <= numberZero;
+    }
+
+}
+```
 > 45. 0~n-1这n个数字排列成一个圆圈，从数字0开始每次从这个圆圈中删除第m个数字。求出这个圆圈里剩下的最后一个数字。
 ```
 public class No45 {
