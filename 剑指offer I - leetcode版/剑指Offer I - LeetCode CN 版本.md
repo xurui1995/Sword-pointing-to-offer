@@ -249,6 +249,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc10-2.png?raw=true)
 
 ### 剑指 Offer 11. 旋转数组的最小数字
 ```
@@ -295,12 +296,14 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc11.png?raw=true)
 
 ### 剑指 Offer 12. 矩阵中的路径
 ```
 给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc12-desc.png?raw=true)
 ```
 class Solution {
     char[][] board;
@@ -341,6 +344,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc12.png?raw=true)
 
 ### 剑指 Offer 13. 机器人的运动范围
 ```
@@ -391,6 +395,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc13.png?raw=true)
 
 ### 剑指 Offer 14- I. 剪绳子
 ```
@@ -416,6 +421,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc14-1.png?raw=true)
 
 ### 剑指 Offer 14- II. 剪绳子 II
 ```
@@ -439,6 +445,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc14-2.png?raw=true)
 
 ### 剑指 Offer 15. 二进制中1的个数
 ```
@@ -458,6 +465,7 @@ public class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc15.png?raw=true)
 
 ### 剑指 Offer 16. 数值的整数次方
 ```
@@ -486,6 +494,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc16.png?raw=true)
 
 ### 剑指 Offer 17. 打印从1到最大的n位数
 ```
@@ -508,6 +517,8 @@ class Solution {
     }
 }
 ```
+
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc17.png?raw=true)
 
 ### 剑指 Offer 18. 删除链表的节点
 ```
@@ -542,6 +553,7 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc18.png?raw=true)
 
 ### 剑指 Offer 19. 正则表达式匹配
 ```
@@ -582,5 +594,6 @@ class Solution {
     }
 }
 ```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc19.png?raw=true)
 
 
