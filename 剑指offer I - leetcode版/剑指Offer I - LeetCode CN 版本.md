@@ -228,4 +228,264 @@ class Solution {
 * ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc10-1.png?raw=true)
 
 
+### 剑指 Offer 10- II. 青蛙跳台阶问题
+```
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+
+答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+```
+
+```
+class Solution {
+    int mod = 1000000007;
+    public int numWays(int n) {
+        int[] dp = new int[2];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i & 1] = (dp[(i - 1) & 1] % mod + dp[(i - 2) & 1] % mod) % mod;
+        }
+        return dp[n & 1];
+    }
+}
+```
+
+### 剑指 Offer 11. 旋转数组的最小数字
+```
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1。  
+
+示例 1：
+输入：[3,4,5,1,2]
+输出：1
+
+示例 2：
+输入：[2,2,2,0,1]
+输出：0
+
+```
+
+```
+class Solution {
+    public int minArray(int[] nums) {
+        int n = nums.length;
+        int r = n - 1;
+        if (nums[r] > nums[0]) {
+            return nums[0];
+        }
+        while (r >= 0 && nums[r] == nums[0]) {
+            r--;
+        }
+        if (r == -1) {
+            return nums[0];
+        }
+        if (nums[r] > nums[0]) {
+            return nums[0];
+        }
+        int l = 0;
+        while (l < r) {
+            int mid = l + r >> 1;
+            if (nums[mid] < nums[0]) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return nums[r];
+
+    }
+}
+```
+
+### 剑指 Offer 12. 矩阵中的路径
+```
+给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+```
+```
+class Solution {
+    char[][] board;
+    boolean[][] visited;
+
+    public boolean exist(char[][] board, String word) {
+        this.board = board;
+        visited = new boolean[board.length][board[0].length];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == word.charAt(0) && dfs(word, 0, i, j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public boolean dfs(String word, int index, int i, int j) {
+        if (index == word.length()) {
+            return true;
+        }
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
+            return false;
+        }
+        if (visited[i][j] || board[i][j] != word.charAt(index)) {
+            return false;
+        }
+
+        visited[i][j] = true;
+
+        boolean ans = dfs(word, index + 1, i + 1, j) || dfs(word, index + 1, i - 1, j)
+                || dfs(word, index + 1, i, j + 1) || dfs(word, index + 1, i, j - 1);
+
+        visited[i][j] = false;
+        return ans;
+    }
+}
+```
+
+### 剑指 Offer 13. 机器人的运动范围
+```
+地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
+```
+
+```
+class Solution {
+    public int movingCount(int m, int n, int k) {
+        boolean[][] visited = new boolean[m][n];
+        visited[0][0] = true;
+        int ans = 0;
+        Queue<int[]> queue = new LinkedList();
+
+        queue.offer(new int[]{0, 0});
+        int[] x = {1, -1, 0, 0};
+        int[] y = {0, 0, 1, -1};
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            ans += size;
+            for (int i = 0; i < size; i++) {
+                int[] poll = queue.poll();
+                for (int K = 0; K < 4; K++) {
+                    int newX = poll[0] + x[K];
+                    int newY = poll[1] + y[K];
+                    if (newX >= 0 && newX < m && newY >= 0 && newY < n && !visited[newX][newY]) {
+                        visited[newX][newY] = true;
+                        int num = 0;
+                        int temp = newX;
+                        while (temp != 0) {
+                            num += temp % 10;
+                            temp = temp / 10;
+                        }
+                        temp = newY;
+                        while (temp != 0) {
+                            num += temp % 10;
+                            temp = temp / 10;
+                        }
+                        if (num <= k) {
+                            queue.offer(new int[]{newX, newY});
+                        }
+
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+}
+```
+
+### 剑指 Offer 14- I. 剪绳子
+```
+给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 k[0]*k[1]*...*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
+
+示例 1：
+输入: 2
+输出: 1
+解释: 2 = 1 + 1, 1 × 1 = 1
+```
+```
+class Solution {
+    public int cuttingRope(int n) {
+        if (n <= 3) {
+            return n - 1;
+        }
+        int mod = n % 3;
+        int cnt = n / 3;
+        if (mod == 1) {
+            return (int) (Math.pow(3.0, cnt - 1) * 4);
+        }
+        return (int) (Math.pow(3.0, cnt) * (mod == 0 ? 1 : mod));
+    }
+}
+```
+
+### 剑指 Offer 14- II. 剪绳子 II
+```
+给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），每段绳子的长度记为 k[0],k[1]...k[m - 1] 。请问 k[0]*k[1]*...*k[m - 1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
+```
+```
+class Solution {
+    int mod = 1000000007;
+
+    public int cuttingRope(int n) {
+        if (n <= 3) {
+            return n - 1;
+        }
+        long ans = 1;
+        while (n > 4) {
+            ans = ans * 3 % mod;
+            n -= 3;
+        }
+        ans = ans * n % mod;
+        return (int) (ans);
+    }
+}
+```
+
+### 剑指 Offer 15. 二进制中1的个数
+```
+编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 '1' 的个数（也被称为 汉明重量).）。
+请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。
+```
+```
+public class Solution {
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        int ans = 0;
+        while(n != 0) {
+            n = n & (n-1);
+            ans++;
+        }
+        return ans;
+    }
+}
+```
+
+### 剑指 Offer 16. 数值的整数次方
+```
+实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xn）。不得使用库函数，同时不需要考虑大数问题。
+输入：x = 2.00000, n = 10
+输出：1024.00000
+```
+
+```
+class Solution {
+    public double myPow(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n < 0) {
+
+            return 1 / (myPow(x, -(n + 1)) * x);
+        }
+        int halfN = n / 2;
+        double val = myPow(x, halfN);
+        double ans = val * val;
+        if (n % 2 == 1) {
+            ans *= x;
+        }
+        return ans;
+    }
+}
+```
+
+
 
