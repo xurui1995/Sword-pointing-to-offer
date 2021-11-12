@@ -487,5 +487,100 @@ class Solution {
 }
 ```
 
+### 剑指 Offer 17. 打印从1到最大的n位数
+```
+输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
+
+示例 1:
+输入: n = 1
+输出: [1,2,3,4,5,6,7,8,9]
+```
+
+```
+class Solution {
+    public int[] printNumbers(int n) {
+        int max = (int) Math.pow(10, n) - 1;
+        int[] ans = new int[max];
+        for (int i = 0; i < max; i++) {
+            ans[i] = i + 1;
+        }
+        return ans;
+    }
+}
+```
+
+### 剑指 Offer 18. 删除链表的节点
+```
+给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。
+返回删除后的链表的头节点。
+
+注意：此题对比原题有改动
+
+示例 1:
+输入: head = [4,5,1,9], val = 5
+输出: [4,1,9]
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -> 1 -> 9.
+```
+
+```
+class Solution {
+    public ListNode deleteNode(ListNode head, int val) {
+        ListNode hair = new ListNode();
+        ListNode temp = hair;
+        while (head != null) {
+            if (head.val != val) {
+                temp.next = head;
+                temp = temp.next;
+                head = head.next;
+                temp.next = null;
+            } else {
+                head = head.next;
+            }
+
+        }
+        return hair.next;
+    }
+}
+```
+
+### 剑指 Offer 19. 正则表达式匹配
+```
+请实现一个函数用来匹配包含'. '和'*'的正则表达式。模式中的字符'.'表示任意一个字符，而'*'表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但与"aa.a"和"ab*a"均不匹配。
+
+输入:
+s = "aa"
+p = "a*"
+输出: true
+解释: 因为 '*' 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 'a'。因此，字符串 "aa" 可被视为 'a' 重复了一次。
+```
+```
+class Solution {
+    public boolean isMatch(String s, String p) {
+        s = " " + s;
+        p = " " + p;
+        int m = s.length();
+        int n = p.length();
+        boolean[][] dp = new boolean[m][n];
+        dp[0][0] = true;
+        for (int i = 0; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                char sc = s.charAt(i);
+                char pc = p.charAt(j);
+                if ((sc == pc || pc == '.') && i >= 1) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else if (pc == '*') {
+                    dp[i][j] = dp[i][j - 2];
+                    char prev = p.charAt(j - 1);
+                    if (i >= 1 && (prev == sc || prev == '.')) {
+                        dp[i][j] = dp[i][j] || dp[i - 1][j - 2];
+                        dp[i][j] = dp[i][j] || dp[i - 1][j];
+                    }
+                }
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+}
+```
 
 
