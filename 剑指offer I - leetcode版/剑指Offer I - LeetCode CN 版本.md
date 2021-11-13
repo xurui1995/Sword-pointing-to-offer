@@ -597,3 +597,344 @@ class Solution {
 * ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc19.png?raw=true)
 
 
+### 剑指 Offer 20. 表示数值的字符串
+```
+请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。
+
+数值（按顺序）可以分成以下几个部分：
+若干空格
+一个 小数 或者 整数
+（可选）一个 'e' 或 'E' ，后面跟着一个 整数
+若干空格
+
+
+小数（按顺序）可以分成以下几个部分：
+（可选）一个符号字符（'+' 或 '-'）
+下述格式之一：
+至少一位数字，后面跟着一个点 '.'
+至少一位数字，后面跟着一个点 '.' ，后面再跟着至少一位数字
+一个点 '.' ，后面跟着至少一位数字
+
+整数（按顺序）可以分成以下几个部分：
+（可选）一个符号字符（'+' 或 '-'）
+至少一位数字
+部分数值列举如下：
+["+100", "5e2", "-123", "3.1416", "-1E-16", "0123"]
+部分非数值列举如下：
+["12e", "1a3.14", "1.2.3", "+-5", "12e+5.4"]
+```
+```
+class Solution {
+
+    static HashMap<Integer, Map<Integer, Integer>> map = new HashMap();
+    static int blank = 0;
+    static int sign = 1;
+    static int digit = 2;
+    static int dot = 3;
+    static int e = 4;
+
+
+    // 空格 0 { 空格 -> 0, 符号-> 1, 数字-> 2, 点-> 3}
+    // 符号1 1  {数字 -> 2, 点 -> 3}
+    // 数字1 2   {数字 -> 2,   (e, E) -> 4 , 点-> 5, 空格->9 }
+    // 无数字前缀的点 3 { 数字 -> 8 }
+    // E   4  {符号  -> 6,  数字-> 7}
+    // 有数字前缀的点 5 { 数字 -> 8, (e, E) -> 4, 空格 -> 9}
+    // 符号2  6 {数字 -> 7}
+    // e后面的数字 7 {空格->9, 数字->7}
+    // 点后面的数字 8 {空格->9, 数字->8, (e, E) -> 4}
+    // 结尾空格 9 {空格 -> 9}
+
+
+    static {
+        Map<Integer, Integer> stat0 = new HashMap();
+        stat0.put(blank, 0);
+        stat0.put(sign, 1);
+        stat0.put(digit, 2);
+        stat0.put(dot, 3);
+        map.put(0, stat0);
+
+        Map<Integer, Integer> stat1 = new HashMap();
+        stat1.put(digit, 2);
+        stat1.put(dot, 3);
+        map.put(1, stat1);
+
+        Map<Integer, Integer> stat2 = new HashMap();
+        stat2.put(digit, 2);
+        stat2.put(e, 4);
+        stat2.put(dot, 5);
+        stat2.put(blank, 9);
+        map.put(2, stat2);
+
+        Map<Integer, Integer> stat3 = new HashMap();
+
+        stat3.put(digit, 8);
+        map.put(3, stat3);
+
+
+        Map<Integer, Integer> stat4 = new HashMap();
+        stat4.put(sign, 6);
+        stat4.put(digit, 7);
+        map.put(4, stat4);
+
+
+        Map<Integer, Integer> stat5 = new HashMap();
+        stat5.put(digit, 8);
+        stat5.put(e, 4);
+        stat5.put(blank, 9);
+        map.put(5, stat5);
+
+        Map<Integer, Integer> stat6 = new HashMap();
+        stat6.put(digit, 7);
+        map.put(6, stat6);
+
+        Map<Integer, Integer> stat7 = new HashMap();
+        stat7.put(blank, 9);
+        stat7.put(digit, 7);
+        map.put(7, stat7);
+        Map<Integer, Integer> stat8 = new HashMap();
+        stat8.put(digit, 8);
+        stat8.put(e, 4);
+        stat8.put(blank, 9);
+        map.put(8, stat8);
+
+
+        Map<Integer, Integer> stat9 = new HashMap();
+
+        stat9.put(blank, 9);
+        map.put(9, stat9);
+
+
+    }
+
+    public boolean isNumber(String s) {
+        int cur = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int action = -1;
+            if (c == '.') {
+                action = dot;
+            } else if (c == 'e' || c == 'E') {
+                action = e;
+            } else if (c == ' ') {
+                action = blank;
+            } else if (c == '+' || c == '-') {
+                action = sign;
+            } else if (c >= '0' && c <= '9') {
+                action = digit;
+            }
+            if (action == -1 || !map.get(cur).containsKey(action)) {
+                return false;
+            }
+
+            cur = map.get(cur).get(action);
+        }
+        return cur == 2 || cur == 5 || cur == 7 || cur == 8 || cur == 9;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc20.png?raw=true)
+
+### 剑指 Offer 21. 调整数组顺序使奇数位于偶数前面
+```
+输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数在数组的前半部分，所有偶数在数组的后半部分。
+```
+```
+class Solution {
+    public int[] exchange(int[] nums) {
+        int l = 0;
+        int r = nums.length - 1;
+        while (l < r) {
+            while (l < r && nums[l] % 2 == 1) {
+                l++;
+            }
+
+            while (l < r && nums[r] % 2 == 0) {
+                r--;
+            }
+
+            if (l < r) {
+                int temp = nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp;
+            }
+        }
+        return nums;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc21.png?raw=true)
+
+
+### 剑指 Offer 22. 链表中倒数第k个节点
+```
+输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。
+
+例如，一个链表有 6 个节点，从头节点开始，它们的值依次是 1、2、3、4、5、6。这个链表的倒数第 3 个节点是值为 4 的节点。
+```
+```
+class Solution {
+    public ListNode getKthFromEnd(ListNode head, int k) {
+        ListNode slow = head;
+        ListNode fast = head;
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
+        }
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc22.png?raw=true)
+* 
+
+### 剑指 Offer 24. 反转链表
+```
+定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+```
+```
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        if (head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc24.png?raw=true)
+
+### 剑指 Offer 25. 合并两个排序的链表
+```
+输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+
+示例1：
+输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+```
+```
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode hair = new ListNode(-1);
+        ListNode temp = hair;
+        while (l1 != null || l2 != null) {
+            if (l2 == null || (l1 != null && l1.val <= l2.val)) {
+                temp.next = l1;
+                l1 = l1.next;
+                temp = temp.next;
+                temp.next = null;
+            } else {
+                temp.next = l2;
+                l2 = l2.next;
+                temp = temp.next;
+
+                temp.next = null;
+            }
+        }
+        return hair.next;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc25.png?raw=true)
+
+### 剑指 Offer 26. 树的子结构
+```
+输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)
+B是A的子结构， 即 A中有出现和B相同的结构和节点值。
+```
+```
+class Solution {
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        return (A != null && B != null) && (solve(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));
+    }
+
+    boolean solve(TreeNode A, TreeNode B) {
+        if (B == null) {
+            return true;
+        }
+        if (A == null || A.val != B.val) {
+            return false;
+        }
+        return solve(A.left, B.left) && solve(A.right, B.right);
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc26.png?raw=true)
+
+### 剑指 Offer 27. 二叉树的镜像
+```
+请完成一个函数，输入一个二叉树，该函数输出它的镜像。
+```
+```
+class Solution {
+    public TreeNode mirrorTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        mirrorTree(root.left);
+        mirrorTree(root.right);
+        return root;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc27.png?raw=true)
+
+### 剑指 Offer 28. 对称的二叉树
+```
+请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+```
+```
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return isSymmetric(root.left, root.right);
+    }
+
+    public boolean isSymmetric(TreeNode node1, TreeNode node2) {
+        if (node1 == null && node2 == null) {
+            return true;
+        }
+        if (node1 == null || node2 == null) {
+            return false;
+        }
+        if (node1.val != node2.val) {
+            return false;
+        }
+        return isSymmetric(node1.left, node2.right) && isSymmetric(node2.left, node1.right);
+
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc28.png?raw=true)
+
+
+
