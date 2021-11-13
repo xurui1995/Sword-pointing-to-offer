@@ -789,7 +789,7 @@ class Solution {
 }
 ```
 * ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc22.png?raw=true)
-* 
+
 
 ### 剑指 Offer 24. 反转链表
 ```
@@ -937,4 +937,356 @@ class Solution {
 * ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc28.png?raw=true)
 
 
+### 剑指 Offer 29. 顺时针打印矩阵
+```
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
+
+示例 1：
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]
+```
+```
+class Solution {
+    public int[] spiralOrder(int[][] matrix) {
+        int m = matrix.length;
+        if (m == 0) {
+            return new int[0];
+        }
+        int n = matrix[0].length;
+        if (n == 0) {
+            return new int[0];
+        }
+        int round = Math.min((m + 1) / 2, (n + 1) / 2);
+        int[] ans = new int[m * n];
+        int index = 0;
+        int l = 0, t = 0, r = n - 1, b = m - 1;
+        for (int x = 0; x < round; x++) {
+            for (int i = l; i <= r; i++) {
+                ans[index++] = matrix[t][i];
+            }
+            for (int i = t + 1; i <= b; i++) {
+                ans[index++] = matrix[i][r];
+            }
+            for (int i = r - 1; i >= l && b != t; i--) {
+                ans[index++] = matrix[b][i];
+            }
+            for (int i = b - 1; i > t && l != r; i--) {
+                ans[index++] = matrix[i][l];
+            }
+            l++;
+            t++;
+            r--;
+            b--;
+        }
+        return ans;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc29.png?raw=true)
+
+### 剑指 Offer 30. 包含min函数的栈
+```
+定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.min();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.min();   --> 返回 -2.
+```
+```
+class MinStack {
+    Stack<Integer> s1 = new Stack();
+    Stack<Integer> s2 = new Stack();
+
+    public MinStack() {
+
+    }
+
+    public void push(int x) {
+        s1.push(x);
+        if (s2.empty() || s2.peek() >= x) {
+            s2.push(x);
+        }
+    }
+
+    public void pop() {
+        if (s1.pop().equals(s2.peek())) {
+            s2.pop();
+        }
+
+    }
+
+    public int top() {
+        return s1.peek();
+    }
+
+    public int min() {
+        return s2.peek();
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc30.png?raw=true)
+
+### 剑指 Offer 31. 栈的压入、弹出序列
+```
+输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列 {1,2,3,4,5} 是某栈的压栈序列，序列 {4,5,3,2,1} 是该压栈序列对应的一个弹出序列，但 {4,3,5,1,2} 就不可能是该压栈序列的弹出序列。
+输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+输出：true
+解释：我们可以按以下顺序执行：
+push(1), push(2), push(3), push(4), pop() -> 4,
+push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+```
+```
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        Stack<Integer> s = new Stack();
+        int i = 0;
+        for (int num : pushed) {
+            s.push(num);
+            while (i < popped.length && !s.isEmpty() && popped[i] == s.peek()) {
+                s.pop();
+                i++;
+            }
+        }
+        return s.isEmpty();
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc31.png?raw=true)
+
+### 剑指 Offer 32 - I. 从上到下打印二叉树
+```
+从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+```
+
+```
+class Solution {
+    public int[] levelOrder(TreeNode root) {
+        List<Integer> ans = new ArrayList();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root != null) {
+            queue.offer(root);
+        }
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+                ans.add(node.val);
+            }
+        }
+        int[] array = new int[ans.size()];
+        for (int i = 0; i < ans.size(); i++) {
+            array[i] = ans.get(i);
+        }
+        return array;
+    }
+}
+```
+
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc32-1.png?raw=true)
+
+### 剑指 Offer 32 - II. 从上到下打印二叉树 II
+```
+从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+```
+```
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList();
+        List<List<Integer>> ans = new ArrayList();
+        if (root == null) {
+            return ans;
+        }
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                list.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            ans.add(list);
+        }
+        return ans;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc32-2.png?raw=true)
+
+### 剑指 Offer 32 - III. 从上到下打印二叉树 III
+```
+请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
+```
+```
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList();
+        Queue<TreeNode> queue = new LinkedList();
+        if(root != null) {
+            queue.offer(root);
+        }
+        boolean ltr = true;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList();
+            for(int i=0; i< size; i++) {
+                TreeNode node = queue.poll();
+                if(node.left  != null) {
+                    queue.offer(node.left);
+                }
+                if(node.right  != null) {
+                    queue.offer(node.right);
+                }
+                if(ltr) {
+                    list.add(node.val);
+                } else {
+                    list.add(0, node.val);
+                }
+            }
+            ltr = !ltr;
+            ans.add(list);
+        }
+        return ans;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc32-3.png?raw=true)
+
+### 剑指 Offer 33. 二叉搜索树的后序遍历序列
+```
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
+```
+```
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        int n = postorder.length;
+        return verify(0, n - 1, postorder);
+    }
+
+    public boolean verify(int l, int r, int[] postorder) {
+        if (l >= r) {
+            return true;
+        }
+        int root = postorder[r];
+        int mid = r;
+        while (mid >= l && postorder[mid] >= root) {
+            mid--;
+        }
+        int next = mid;
+        while (next >= l) {
+            if (postorder[next] >= root) {
+                return false;
+            }
+            next--;
+        }
+        return verify(l, mid, postorder) && verify(mid + 1, r - 1, postorder);
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc33.png?raw=true)
+
+### 剑指 Offer 34. 二叉树中和为某一值的路径
+```
+给你二叉树的根节点 root 和一个整数目标和 targetSum ，找出所有 从根节点到叶子节点 路径总和等于给定目标和的路径。
+叶子节点 是指没有子节点的节点。
+```
+```
+class Solution {
+    List<List<Integer>> ans = new ArrayList();
+    int target;
+
+    public List<List<Integer>> pathSum(TreeNode root, int target) {
+        if (root == null) {
+            return ans;
+        }
+        this.target = target;
+        dfs(root, new ArrayList<>(), 0);
+        return ans;
+    }
+
+    public void dfs(TreeNode root, List<Integer> temp, int sum) {
+        if (root.left == null && root.right == null) {
+            if (sum + root.val == target) {
+                temp.add(root.val);
+                ans.add(new ArrayList(temp));
+                temp.remove(temp.size() - 1);
+            }
+        }
+
+        temp.add(root.val);
+
+        if (root.left != null) {
+            dfs(root.left, temp, sum + root.val);
+        }
+        if (root.right != null) {
+            dfs(root.right, temp, sum + root.val);
+        }
+        temp.remove(temp.size() - 1);
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc34.png?raw=true)
+
+### 剑指 Offer 35. 复杂链表的复制
+```
+请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+```
+```
+class Solution {
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Node temp = head;
+        while (temp != null) {
+            Node next = temp.next;
+            temp.next = new Node(temp.val);
+            temp.next.next = next;
+            temp = next;
+        }
+        temp = head;
+        while (temp != null) {
+            Node next = temp.next;
+            next.random = temp.random == null ? null : temp.random.next;
+            temp = next.next;
+        }
+
+        Node newHead = head.next;
+        temp = head;
+        while (temp != null) {
+            Node next = temp.next;
+            temp.next = temp.next == null ? null : temp.next.next;
+            temp = next;
+        }
+        return newHead;
+    }
+}
+```
+
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc35.png?raw=true)
+
+### 剑指 Offer 36. 二叉搜索树与双向链表
+```
+输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。
+
+```
+```
+```
 
