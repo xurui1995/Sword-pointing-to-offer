@@ -1288,5 +1288,273 @@ class Solution {
 
 ```
 ```
+class Solution {
+    public Node treeToDoublyList(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node[] ans = dfs(root);
+        ans[0].left = ans[1];
+        ans[1].right = ans[0];
+        return ans[0];
+    }
+
+    public Node[] dfs(Node root) {
+        if (root.left == null && root.right == null) {
+            return new Node[]{root, root};
+        }
+        Node left = root;
+        if (root.left != null) {
+            Node[] l = dfs(root.left);
+            left = l[0];
+            l[1].right = root;
+            root.left = l[1];
+        }
+
+        Node right = root;
+        if (root.right != null) {
+            Node[] r = dfs(root.right);
+            right = r[1];
+            r[0].left = root;
+            root.right = r[0];
+        }
+        return new Node[]{left, right};
+    }
+}
+```
+
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc36.png?raw=true)
+
+### 剑指 Offer 37. 序列化二叉树
+```
+请实现两个函数，分别用来序列化和反序列化二叉树。
+你需要设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。
+```
+```
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        if (root == null) {
+            return "#";
+        }
+        return String.valueOf(root.val) + "," + serialize(root.left) + "," + serialize(root.right);
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        String[] strs = data.split(",");
+        Queue<String> queue = new LinkedList<>(Arrays.asList(strs));
+        return dfs(queue);
+    }
+
+    public TreeNode dfs(Queue<String> queue) {
+        if (queue.isEmpty()) {
+            return null;
+        }
+        String root = queue.poll();
+        if (root.equals("#")) {
+            return null;
+        }
+        TreeNode node = new TreeNode(Integer.parseInt(root));
+        node.left = dfs(queue);
+        node.right = dfs(queue);
+        return node;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc37.png?raw=true)
+
+### 剑指 Offer 38. 字符串的排列
+```
+输入一个字符串，打印出该字符串中字符的所有排列。
+你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。
+```
+```
+class Solution {
+    ArrayList<String> list = new ArrayList();
+    boolean[] visited;
+    int n;
+
+    public String[] permutation(String s) {
+        StringBuilder sb = new StringBuilder();
+        char[] arr = s.toCharArray();
+        n = arr.length;
+        visited = new boolean[n];
+        Arrays.sort(arr);
+        dfs(sb, arr);
+        return list.toArray(new String[0]);
+    }
+
+    public void dfs(StringBuilder sb, char[] arr) {
+        if (sb.length() == n) {
+            list.add(sb.toString());
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            if (i >= 1 && !visited[i - 1] && arr[i - 1] == arr[i]) {
+                continue;
+            }
+            if (visited[i]) {
+                continue;
+            }
+            visited[i] = true;
+            sb.append(arr[i]);
+            dfs(sb, arr);
+            visited[i] = false;
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc38.png?raw=true)
+
+### 剑指 Offer 39. 数组中出现次数超过一半的数字
+```
+数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+```
+```
+class Solution {
+    public int majorityElement(int[] nums) {
+        int c = nums[0];
+        int cnt = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (cnt == 0) {
+                c = nums[i];
+                cnt++;
+            } else if (nums[i] == c) {
+                cnt++;
+            } else {
+                cnt--;
+            }
+        }
+        return c;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc39.png?raw=true)
+
+### 剑指 Offer 40. 最小的k个数
+```
+输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。
+```
+```
+class Solution {
+    public int[] getLeastNumbers(int[] arr, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        for (int i : arr) {
+            pq.offer(i);
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
+        int[] ans = new int[k];
+        int index = 0;
+        for (int i : pq) {
+            ans[index++] = i;
+        }
+        return ans;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc40.png?raw=true)
+
+
+### 剑指 Offer 41. 数据流中的中位数
+```
+如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
+
+例如，
+[2,3,4] 的中位数是 3
+[2,3] 的中位数是 (2 + 3) / 2 = 2.5
+
+设计一个支持以下两种操作的数据结构：
+void addNum(int num) - 从数据流中添加一个整数到数据结构中。
+double findMedian() - 返回目前所有元素的中位数。
+```
+```
+
+class MedianFinder {
+
+    /**
+     * initialize your data structure here.
+     */
+    PriorityQueue<Integer> queue1 = new PriorityQueue<>((v1, v2) -> v2 - v1);
+    PriorityQueue<Integer> queue2 = new PriorityQueue();
+    int flag = -1;
+
+    public MedianFinder() {
+
+    }
+
+    public void addNum(int num) {
+        if (flag == -1) {
+            queue1.offer(num);
+            flag = 0;
+        } else if (flag == 0) {
+            queue2.offer(num);
+            if (queue1.peek() > queue2.peek()) {
+                var temp = queue1.poll();
+                queue1.offer(queue2.poll());
+                queue2.offer(temp);
+            }
+            flag = 1;
+        } else {
+            if (num >= queue1.peek()) {
+                queue2.offer(num);
+            } else {
+                queue1.offer(num);
+            }
+            if (queue1.size() - queue2.size() >= 1) {
+                queue2.offer(queue1.poll());
+            } else if (queue2.size() - queue1.size() >= 2) {
+                queue1.offer(queue2.poll());
+            }
+        }
+    }
+
+    public double findMedian() {
+        int size = queue1.size() + queue2.size();
+        if (size % 2 == 0) {
+            return (queue1.peek() * 1.0 + queue2.peek() * 1.0) / 2;
+        }
+        if (size == 1) {
+            return queue1.peek();
+        }
+        return queue2.peek();
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc41.png?raw=true)
+
+### 剑指 Offer 42. 连续子数组的最大和
+```
+输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
+要求时间复杂度为O(n)。
+```
+```
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int ans = Integer.MIN_VALUE;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (sum >= 0) {
+                sum += nums[i];
+            } else {
+                sum = nums[i];
+            }
+            ans = Math.max(ans, sum);
+        }
+        return ans;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc42.png?raw=true)
+
+### 剑指 Offer 43. 1～n 整数中 1 出现的次数
+```
+输入一个整数 n ，求1～n这n个整数的十进制表示中1出现的次数。
+例如，输入12，1～12这些整数中包含1 的数字有1、10、11和12，1一共出现了5次。
 ```
 
