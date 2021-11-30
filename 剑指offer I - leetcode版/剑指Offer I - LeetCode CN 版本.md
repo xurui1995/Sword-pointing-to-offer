@@ -1656,4 +1656,100 @@ class Solution {
 * ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc45.png?raw=true)
 
 
+### 剑指 Offer 46. 把数字翻译成字符串
+```
+给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。
+输入: 12258
+输出: 5
+解释: 12258有5种不同的翻译，分别是"bccfi", "bwfi", "bczi", "mcfi"和"mzi"
+```
+```
+class Solution {
+    public int translateNum(int num) {
+        char[] arr = String.valueOf(num).toCharArray();
+        int n = arr.length;
+
+        int[] dp = new int[n];
+        // 1 2 2 5 8
+        // 1 2 3 5 5
+        dp[0] = 1;
+        for (int i = 1; i < n; i++) {
+            int c = arr[i] - '0';
+            int last = arr[i - 1] - '0';
+            dp[i] = dp[i - 1];
+            if (last * 10 + c >= 10 && last * 10 + c <= 25) {
+                dp[i] += i >= 2 ? dp[i - 2] : 1;
+            }
+        }
+        return dp[n - 1];
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc46.png?raw=true)
+
+### 剑指 Offer 47. 礼物的最大价值
+```
+在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，
+并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+输入: 
+[
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+]
+输出: 12
+解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物
+
+```
+```
+class Solution {
+    public int maxValue(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        for(int i=0; i < m; i++) {
+            for(int j=0; j < n; j++) {
+                int left = j>=1 ? grid[i][j-1] : 0;
+                int right = i>=1 ? grid[i-1][j] : 0;
+                grid[i][j] = Math.max(grid[i][j] + left, grid[i][j] + right);
+            }
+        }
+        return grid[m-1][n-1];
+
+    }
+}
+```
+
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc47.png?raw=true)
+
+### 剑指 Offer 48. 最长不含重复字符的子字符串
+```
+请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
+输入: "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+```
+```
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> map = new HashMap();
+        int start=0;
+        int ans = 0;
+        for(int i=0; i < s.length(); i++) {
+            int last = map.getOrDefault(s.charAt(i), -1);
+            if(last == -1) {
+                ans = Math.max(ans, i- start + 1);
+            } else {
+                start = Math.max(start,  last + 1);
+                 ans = Math.max(ans, i- start + 1);
+            }
+            map.put(s.charAt(i), i);
+        }
+        return ans;
+    }
+}
+```
+
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc48.png?raw=true)
+
+
 
