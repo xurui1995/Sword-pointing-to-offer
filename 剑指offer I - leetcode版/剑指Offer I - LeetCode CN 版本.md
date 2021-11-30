@@ -1557,4 +1557,103 @@ class Solution {
 输入一个整数 n ，求1～n这n个整数的十进制表示中1出现的次数。
 例如，输入12，1～12这些整数中包含1 的数字有1、10、11和12，1一共出现了5次。
 ```
+```
+class Solution {
+    public int countDigitOne(int n) {
+        int ans = 0;
+        int range = 1;
+        int l = n / 10;
+        int cur = n % 10;
+        int r = 0;
+        while (!(l == 0 && cur == 0)) {
+            if (cur == 0) {
+                // 301 -> *1*
+                ans += l * range;
+            } else if (cur == 1) {
+                // 311
+                ans += l * range + r + 1;
+            } else {
+                // 321
+                ans += (l + 1) * range;
+            }
+
+            r += cur * range;
+            cur = l % 10;
+            l /= 10;
+            range *= 10;
+        }
+        return ans;
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc43.png?raw=true)
+
+### 剑指 Offer 44. 数字序列中某一位的数字
+```
+数字以0123456789101112131415…的格式序列化到一个字符序列中。在这个序列中，第5位（从下标0开始计数）是5，第13位是1，第19位是4，等等。
+
+请写一个函数，求任意第n位对应的数字。
+
+输入：n = 3
+输出：3
+```
+```
+class Solution {
+    public int findNthDigit(int n) {
+        if (n < 10) {
+            return n;
+        }
+        long cnt = 9;
+        long l = 1, r = 9, c = 1;
+        
+        while (cnt < n) {
+            r = r * 10 + 9;
+            l = l * 10;
+            c++;
+            cnt += c * (r - l + 1);
+        }
+        long s = cnt - c * (r - l + 1);
+        long gap = n - s - 1;
+        long gapC = gap / c;
+        long modC = gap % c;
+        long num = l + gapC;
+        String str = String.valueOf(num);
+        char ch = str.charAt((int) (modC));
+        return ch - '0';
+
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc44.png?raw=true)
+
+### 剑指 Offer 45. 把数组排成最小的数
+```
+输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+输入: [10,2]
+输出: "102"
+```
+```
+class Solution {
+    public String minNumber(int[] nums) {
+        String[] strs = new String[nums.length];
+        for(int i=0; i < nums.length; i++) {
+            strs[i] = String.valueOf(nums[i]);
+        }
+        Arrays.sort(strs, new Comparator<String>() {
+
+            public int compare(String a, String b) {
+                return (a + b).compareTo(b+a);
+            }
+        });
+        StringBuilder sb  = new StringBuilder();
+        for(var str : strs) {
+            sb.append(str);
+        }
+        return  sb.toString();
+    }
+}
+```
+* ![](https://github.com/xurui1995/Sword-pointing-to-offer/blob/master/%E5%89%91%E6%8C%87offer%20I%20-%20leetcode%E7%89%88/image/lc45.png?raw=true)
+
+
 
